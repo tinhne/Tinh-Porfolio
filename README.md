@@ -105,6 +105,5 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 ## 📄 Acknowledgements
 
-- [v0 by Vercel](https://v0.app) for the initial bootstrapping.
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
