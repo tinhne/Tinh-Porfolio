@@ -28,7 +28,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tinh-porfolio.vercel.app"),
+  metadataBase: new URL("https://trungtinh.site"),
   title: "Le Van Trung Tinh | Fresher Full Stack Developer",
   description:
     "Fresher Full Stack Developer based in Vietnam. Passionate about Backend Development with Node.js, NestJS, and building scalable applications.",
