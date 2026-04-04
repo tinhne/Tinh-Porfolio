@@ -24,11 +24,11 @@ const projects: Project[] = [
     description: "A full-stack SaaS platform that enables video calls with AI-powered meeting summaries and transcription features.",
     challenge: "Building a complete video calling solution with real-time AI processing for meeting summaries while managing user authentication and subscription states.",
     solution: "Built with Next.js App Router for the full-stack architecture, Drizzle ORM for type-safe database operations, and BetterAuth for secure authentication. Integrated AI services for automatic call transcription and summary generation.",
-    image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=600&fit=crop",
+    image: "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775272140/Screenshot_2026-04-04_at_10.05.58_pte6am.png",
     tech: ["Next.js", "TypeScript", "Drizzle ORM", "BetterAuth", "PostgreSQL", "AI SDK"],
-    github: "https://github.com",
-    live: "https://example.com",
-    year: "2024",
+    github: "https://github.com/tinhne/meetai",
+    live: "https://meetai-assitant.vercel.app",
+    year: "2026",
   },
   {
     id: "02",
@@ -38,8 +38,8 @@ const projects: Project[] = [
     solution: "Implemented using Node.js with Fastify framework for high performance. Added JWT authentication, Redis-based rate limiting, Swagger for API documentation, response caching, and Zod schema validation for type-safe request handling.",
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
     tech: ["Node.js", "Fastify", "JWT Auth", "Redis", "Swagger", "Zod"],
-    github: "https://github.com",
-    year: "2024",
+    github: "https://github.com/tinhne/blogFinalProject",
+    year: "2025",
   },
   {
     id: "03",
@@ -47,9 +47,9 @@ const projects: Project[] = [
     description: "A healthcare appointment booking application with patient management, scheduling system, and an integrated chatbot for patient inquiries.",
     challenge: "Building a reliable booking system that handles concurrent appointments, user authorization levels (admin/doctor/patient), and integrating a helpful chatbot assistant.",
     solution: "Developed the complete backend including authentication & authorization system, appointment scheduling logic with conflict prevention, database schema design, and chatbot integration for answering common patient questions.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-    tech: ["Node.js", "NestJS", "PostgreSQL", "JWT", "Chatbot", "TypeORM"],
-    github: "https://github.com",
+    image: "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775275949/original-62ae0e71b2d38d9c067f19bf8b976309_rhrlpk.webp",
+    tech: ["Node.js", "React", "MongoDB", "JWT", "Chatbot", "Prisma", "Stream"],
+    github: "https://github.com/tinhne/Clinic-Management",
     year: "2024",
   },
   {
@@ -61,7 +61,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop",
     tech: ["Python", "XGBoost", "Data Crawling", "Association Rules", "Pandas", "Scikit-learn"],
     github: "https://github.com",
-    year: "2024",
+    year: "2025",
   },
 ]
 

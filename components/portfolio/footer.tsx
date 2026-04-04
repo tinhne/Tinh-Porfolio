@@ -1,16 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 
 export function Footer() {
-  const [copied, setCopied] = useState(false)
-
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText("levantrungtinh13@gmail.com")
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
 
   return (
     <footer className="py-24 border-t border-border relative overflow-hidden">
@@ -46,32 +38,21 @@ export function Footer() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <motion.button
-                  onClick={copyEmail}
+                <motion.a
+                  href="mailto:levantrungtinh13@gmail.com"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative px-8 py-4 bg-primary text-primary-foreground font-mono text-sm 
                            border-2 border-primary hover:bg-transparent hover:text-primary
-                           transition-colors duration-200"
+                           transition-colors duration-200 inline-block cursor-pointer"
                 >
                   <span className="flex items-center gap-3">
-                    {copied ? (
-                      <>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Email Copied!
-                      </>
-                    ) : (
-                      <>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        levantrungtinh13@gmail.com
-                      </>
-                    )}
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Contact With me
                   </span>
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>
@@ -127,7 +108,7 @@ export function Footer() {
                 <ul className="mt-4 space-y-3">
                   {[
                     { name: "Works", href: "#works" },
-                    { name: "About", href: "#about" },
+                    { name: "About", href: "#hero" },
                     { name: "Resume", href: "/resume.pdf" },
                     { name: "Blog", href: "/blog" },
                   ].map((link) => (

@@ -29,7 +29,7 @@ export function Hero() {
   }
 
   return (
-    <section className="min-h-screen relative overflow-hidden">
+    <section id="hero" className="min-h-screen relative overflow-hidden">
       {/* Noise texture overlay */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -166,7 +166,7 @@ export function Hero() {
                 <p className="pl-4"><span className="text-emerald-400">name</span>: <span className="text-amber-400">&quot;Le Van Trung Tinh&quot;</span>,</p>
                 <p className="pl-4"><span className="text-emerald-400">role</span>: <span className="text-amber-400">&quot;Full Stack Developer&quot;</span>,</p>
                 <p className="pl-4"><span className="text-emerald-400">available</span>: <span className="text-blue-400">true</span>,</p>
-                <p className="pl-4"><span className="text-emerald-400">skills</span>: [<span className="text-amber-400">&quot;Node.js&quot;</span>, <span className="text-amber-400">&quot;NestJS&quot;</span>, <span className="text-amber-400">&quot;Next.js&quot;</span>],</p>
+                {/* <p className="pl-4"><span className="text-emerald-400">skills</span>: [<span className="text-amber-400">&quot;Node.js&quot;</span>, <span className="text-amber-400">&quot;NestJS&quot;</span>, <span className="text-amber-400">&quot;Next.js&quot;</span>],</p> */}
                 <p>{"}"};</p>
               </div>
             </div>

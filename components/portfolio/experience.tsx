@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 interface ExperienceItem {
-  id: string
-  role: string
-  company: string
-  companyUrl?: string
-  period: string
-  description: string
-  achievements: string[]
-  tech: string[]
+  id: string;
+  role: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  description: string;
+  achievements: string[];
+  tech: string[];
 }
 
 const experiences: ExperienceItem[] = [
@@ -20,7 +20,8 @@ const experiences: ExperienceItem[] = [
     company: "Tomosia Vietnam",
     companyUrl: "https://tomosia.com",
     period: "Mar 2025 — Oct 2025",
-    description: "6-month internship focused on backend development, system architecture, and building production-ready projects following clean architecture standards.",
+    description:
+      "6-month internship focused on backend development, system architecture, and building production-ready projects following clean architecture standards.",
     achievements: [
       "Learned system design and clean architecture patterns",
       "Built backend projects with Node.js, TypeScript, and Fastify",
@@ -28,7 +29,15 @@ const experiences: ExperienceItem[] = [
       "Wrote automation scripts using Bash and implemented cronjobs",
       "Developed small projects with Next.js and shadcn/ui",
     ],
-    tech: ["Node.js", "TypeScript", "Fastify", "tRPC", "Next.js", "Docker", "Bash"],
+    tech: [
+      "Node.js",
+      "TypeScript",
+      "Fastify",
+      "tRPC",
+      "Next.js",
+      "Docker",
+      "Bash",
+    ],
   },
   {
     id: "exp-002",
@@ -36,7 +45,8 @@ const experiences: ExperienceItem[] = [
     company: "Hoc Cung Chuyen Gia",
     companyUrl: "https://hoccungchuyengia.com",
     period: "2025 (5 months)",
-    description: "1:1 tutoring for students on data visualization using Power BI. Taught data modeling, DAX formulas, and dashboard design.",
+    description:
+      "1:1 tutoring for students on data visualization using Power BI. Taught data modeling, DAX formulas, and dashboard design.",
     achievements: [
       "Provided personalized 1:1 tutoring sessions",
       "Helped students build interactive dashboards and reports",
@@ -44,7 +54,7 @@ const experiences: ExperienceItem[] = [
     ],
     tech: ["Power BI", "Data Visualization", "DAX", "Data Modeling"],
   },
-]
+];
 
 export function Experience() {
   return (
@@ -62,7 +72,8 @@ export function Experience() {
             // Proof of Work
           </span>
           <h2 className="mt-4 text-4xl md:text-5xl font-serif font-bold text-foreground">
-            My<br />
+            My
+            <br />
             <span className="italic text-muted-foreground">experience</span>
           </h2>
         </motion.div>
@@ -87,7 +98,7 @@ export function Experience() {
                 <div className="absolute left-0 md:left-8 top-2 -translate-x-1/2 flex flex-col items-center">
                   <div className="w-4 h-4 border-2 border-primary bg-background" />
                   {index < experiences.length - 1 && (
-                    <div className="w-px h-16 bg-gradient-to-b from-primary/50 to-transparent hidden md:block" />
+                    <div className="w-px h-16 bg-linear-to-b from-primary/50 to-transparent hidden md:block" />
                   )}
                 </div>
 
@@ -100,7 +111,9 @@ export function Experience() {
                 <div className="border border-border p-6 bg-card">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                     <div>
-                      <h3 className="text-xl font-medium text-foreground">{exp.role}</h3>
+                      <h3 className="text-xl font-medium text-foreground">
+                        {exp.role}
+                      </h3>
                       {exp.companyUrl ? (
                         <a
                           href={exp.companyUrl}
@@ -109,12 +122,24 @@ export function Experience() {
                           className="text-primary hover:underline underline-offset-4 inline-flex items-center gap-1"
                         >
                           {exp.company}
-                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="square"
+                              strokeLinejoin="miter"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
                           </svg>
                         </a>
                       ) : (
-                        <span className="text-muted-foreground">{exp.company}</span>
+                        <span className="text-muted-foreground">
+                          {exp.company}
+                        </span>
                       )}
                     </div>
                     <span className="font-mono text-sm text-muted-foreground whitespace-nowrap">
@@ -122,14 +147,20 @@ export function Experience() {
                     </span>
                   </div>
 
-                  <p className="text-muted-foreground mb-4">{exp.description}</p>
+                  <p className="text-muted-foreground mb-4">
+                    {exp.description}
+                  </p>
 
                   {/* Achievements as git diff style */}
                   <div className="mb-4 space-y-1 font-mono text-sm">
                     {exp.achievements.map((achievement, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <span className="text-emerald-500 flex-shrink-0">+</span>
-                        <span className="text-muted-foreground">{achievement}</span>
+                        <span className="text-emerald-500 flex-shrink-0">
+                          +
+                        </span>
+                        <span className="text-muted-foreground">
+                          {achievement}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -152,5 +183,5 @@ export function Experience() {
         </div>
       </div>
     </section>
-  )
+  );
 }
