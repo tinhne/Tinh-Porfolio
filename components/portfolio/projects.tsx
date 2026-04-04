@@ -1,42 +1,57 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface Project {
-  id: string
-  title: string
-  description: string
-  challenge: string
-  solution: string
-  image: string
-  tech: string[]
-  github?: string
-  live?: string
-  year: string
+  id: string;
+  title: string;
+  description: string;
+  challenge: string;
+  solution: string;
+  image: string;
+  tech: string[];
+  github?: string;
+  live?: string;
+  year: string;
 }
 
 const projects: Project[] = [
   {
     id: "01",
     title: "MeetAI - Video Call SaaS",
-    description: "A full-stack SaaS platform that enables video calls with AI-powered meeting summaries and transcription features.",
-    challenge: "Building a complete video calling solution with real-time AI processing for meeting summaries while managing user authentication and subscription states.",
-    solution: "Built with Next.js App Router for the full-stack architecture, Drizzle ORM for type-safe database operations, and BetterAuth for secure authentication. Integrated AI services for automatic call transcription and summary generation.",
-    image: "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775272140/Screenshot_2026-04-04_at_10.05.58_pte6am.png",
-    tech: ["Next.js", "TypeScript", "Drizzle ORM", "BetterAuth", "PostgreSQL", "AI SDK"],
+    description:
+      "A full-stack SaaS platform that enables video calls with AI-powered meeting summaries and transcription features.",
+    challenge:
+      "Building a complete video calling solution with real-time AI processing for meeting summaries while managing user authentication and subscription states.",
+    solution:
+      "Built with Next.js App Router for the full-stack architecture, Drizzle ORM for type-safe database operations, and BetterAuth for secure authentication. Integrated AI services for automatic call transcription and summary generation.",
+    image:
+      "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775272140/Screenshot_2026-04-04_at_10.05.58_pte6am.png",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "BetterAuth",
+      "PostgreSQL",
+      "AI SDK",
+    ],
     github: "https://github.com/tinhne/meetai",
-    live: "https://meetai-assitant.vercel.app",
+    live: "https://meetai-assistant.vercel.app",
     year: "2026",
   },
   {
     id: "02",
     title: "Blog API Backend",
-    description: "A production-ready RESTful API for a blog platform with comprehensive backend features including authentication, caching, and API documentation.",
-    challenge: "Designing a scalable and maintainable backend architecture with proper security measures, rate limiting, and developer-friendly documentation.",
-    solution: "Implemented using Node.js with Fastify framework for high performance. Added JWT authentication, Redis-based rate limiting, Swagger for API documentation, response caching, and Zod schema validation for type-safe request handling.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    description:
+      "A production-ready RESTful API for a blog platform with comprehensive backend features including authentication, caching, and API documentation.",
+    challenge:
+      "Designing a scalable and maintainable backend architecture with proper security measures, rate limiting, and developer-friendly documentation.",
+    solution:
+      "Implemented using Node.js with Fastify framework for high performance. Added JWT authentication, Redis-based rate limiting, Swagger for API documentation, response caching, and Zod schema validation for type-safe request handling.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
     tech: ["Node.js", "Fastify", "JWT Auth", "Redis", "Swagger", "Zod"],
     github: "https://github.com/tinhne/blogFinalProject",
     year: "2025",
@@ -44,10 +59,14 @@ const projects: Project[] = [
   {
     id: "03",
     title: "Clinic Booking System",
-    description: "A healthcare appointment booking application with patient management, scheduling system, and an integrated chatbot for patient inquiries.",
-    challenge: "Building a reliable booking system that handles concurrent appointments, user authorization levels (admin/doctor/patient), and integrating a helpful chatbot assistant.",
-    solution: "Developed the complete backend including authentication & authorization system, appointment scheduling logic with conflict prevention, database schema design, and chatbot integration for answering common patient questions.",
-    image: "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775275949/original-62ae0e71b2d38d9c067f19bf8b976309_rhrlpk.webp",
+    description:
+      "A healthcare appointment booking application with patient management, scheduling system, and an integrated chatbot for patient inquiries.",
+    challenge:
+      "Building a reliable booking system that handles concurrent appointments, user authorization levels (admin/doctor/patient), and integrating a helpful chatbot assistant.",
+    solution:
+      "Developed the complete backend including authentication & authorization system, appointment scheduling logic with conflict prevention, database schema design, and chatbot integration for answering common patient questions.",
+    image:
+      "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775275949/original-62ae0e71b2d38d9c067f19bf8b976309_rhrlpk.webp",
     tech: ["Node.js", "React", "MongoDB", "JWT", "Chatbot", "Prisma", "Stream"],
     github: "https://github.com/tinhne/Clinic-Management",
     year: "2024",
@@ -55,19 +74,30 @@ const projects: Project[] = [
   {
     id: "04",
     title: "Medical Diagnosis Chatbot",
-    description: "An ML-powered chatbot that analyzes symptoms and suggests potential diagnoses based on disease ontology data and association rule mining.",
-    challenge: "Collecting and processing medical data from Disease Ontology, finding meaningful relationships between symptoms and diseases, and training an accurate prediction model.",
-    solution: "Crawled data from Disease Ontology database, applied Association Rule Mining to discover entity relationships, performed data cleaning and preprocessing, generated synthetic user data for training. Built classification model using XGBoost. Note: Achieved 60% accuracy - identified that database quality and association rules need improvement for better results.",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop",
-    tech: ["Python", "XGBoost", "Data Crawling", "Association Rules", "Pandas", "Scikit-learn"],
+    description:
+      "An ML-powered chatbot that analyzes symptoms and suggests potential diagnoses based on disease ontology data and association rule mining.",
+    challenge:
+      "Collecting and processing medical data from Disease Ontology, finding meaningful relationships between symptoms and diseases, and training an accurate prediction model.",
+    solution:
+      "Crawled data from Disease Ontology database, applied Association Rule Mining to discover entity relationships, performed data cleaning and preprocessing, generated synthetic user data for training. Built classification model using XGBoost. Note: Achieved 60% accuracy - identified that database quality and association rules need improvement for better results.",
+    image:
+      "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop",
+    tech: [
+      "Python",
+      "XGBoost",
+      "Data Crawling",
+      "Association Rules",
+      "Pandas",
+      "Scikit-learn",
+    ],
     github: "https://github.com",
     year: "2025",
   },
-]
+];
 
 export function Projects() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="works" className="py-32 relative">
@@ -85,8 +115,11 @@ export function Projects() {
               // Selected Works
             </span>
             <h2 className="mt-4 text-4xl md:text-5xl font-serif font-bold text-foreground">
-              Projects I&apos;ve<br />
-              <span className="italic text-muted-foreground">built & learned from</span>
+              Projects I&apos;ve
+              <br />
+              <span className="italic text-muted-foreground">
+                built & learned from
+              </span>
             </h2>
           </div>
           <span className="hidden md:block font-mono text-6xl text-border font-bold">
@@ -118,8 +151,10 @@ export function Projects() {
 
                 {/* Project title & year */}
                 <div className="lg:col-span-4">
-                  <h3 className="text-2xl font-medium text-foreground group-hover:text-primary 
-                               transition-colors duration-200">
+                  <h3
+                    className="text-2xl font-medium text-foreground group-hover:text-primary 
+                               transition-colors duration-200"
+                  >
                     {project.title}
                   </h3>
                   <span className="font-mono text-sm text-muted-foreground mt-1 block">
@@ -156,8 +191,18 @@ export function Projects() {
                              transition-colors duration-200"
                   >
                     <span className="font-mono text-sm">View Details</span>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
                     </svg>
                   </motion.div>
                 </div>
@@ -220,8 +265,18 @@ export function Projects() {
                   className="absolute top-4 right-4 w-10 h-10 bg-background/80 border border-border
                            flex items-center justify-center hover:bg-background transition-colors"
                 >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="square"
+                      strokeLinejoin="miter"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -230,7 +285,9 @@ export function Projects() {
               <div className="p-8">
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <div>
-                    <span className="font-mono text-sm text-primary">{selectedProject.year}</span>
+                    <span className="font-mono text-sm text-primary">
+                      {selectedProject.year}
+                    </span>
                     <h3 className="text-3xl font-serif font-bold text-foreground mt-2">
                       {selectedProject.title}
                     </h3>
@@ -307,5 +364,5 @@ export function Projects() {
         )}
       </AnimatePresence>
     </section>
-  )
+  );
 }
