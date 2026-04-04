@@ -109,7 +109,7 @@ export function Footer() {
                   {[
                     { name: "Works", href: "#works" },
                     { name: "About", href: "#hero" },
-                    { name: "Resume", href: "/resume.pdf" },
+                    { name: "Resume", href: "/SoftwareEngineer_LeVanTrungTinh_CV.pdf" },
                     { name: "Blog", href: "/blog" },
                   ].map((link) => (
                     <li key={link.name}>

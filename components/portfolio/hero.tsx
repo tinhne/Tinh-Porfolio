@@ -121,11 +121,27 @@ export function Hero() {
               </motion.button>
 
               <motion.a
+                href="/SoftwareEngineer_LeVanTrungTinh_CV.pdf"
+                download="SoftwareEngineer_LeVanTrungTinh_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-6 py-3 border-2 border-primary bg-transparent text-primary font-mono text-sm
+                         hover:bg-primary hover:text-primary-foreground transition-colors duration-200 flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download CV
+              </motion.a>
+
+              <motion.a
                 href="#works"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-6 py-3 border-2 border-border text-foreground font-mono text-sm
-                         hover:border-primary hover:text-primary transition-colors duration-200"
+                         hover:border-primary hover:text-primary transition-colors duration-200 flex items-center h-[52px]"
               >
                 View Selected Works
               </motion.a>
