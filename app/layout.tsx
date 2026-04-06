@@ -30,21 +30,21 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://trungtinh.site"),
   title: "Le Van Trung Tinh | Fresher Full Stack Developer",
-  description:
-    "Fresher Full Stack Developer based in Vietnam. Passionate about Backend Development with Node.js, NestJS, and building scalable applications.",
+description:
+  "Trung Tinh (Le Van Trung Tinh) is a Backend Developer from Vietnam specializing in Node.js, NestJS, and scalable SaaS systems. Explore projects and experience.",
   generator: "Next.js",
   keywords: [
-    "Full Stack Developer",
-    "Backend Developer",
-    "Node.js",
-    "NestJS",
-    "TypeScript",
-    "Vietnam",
-    "Fresher",
-  ],
+  "Trung Tinh",
+  "Le Van Trung Tinh",
+  "trungtinh",
+  "Trung Tinh Developer",
+  "Backend Developer Vietnam",
+  "Node.js Developer",
+  "NestJS Developer",
+],
   authors: [{ name: "Le Van Trung Tinh" }],
   openGraph: {
-    title: "Le Van Trung Tinh | Fresher Full Stack Developer",
+    title: "Trung Tinh (Le Van Trung Tinh) - Backend Developer | Node.js, NestJS",
     description: "Passionate about Backend Development with Node.js & NestJS",
     type: "website",
   },
@@ -74,6 +74,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Le Van Trung Tinh",
+        "alternateName": "Trung Tinh",
+        "url": "https://trungtinh.site",
+        "jobTitle": "Backend Developer",
+        "sameAs": [
+          "https://github.com/your-github",
+          "https://linkedin.com/in/your-linkedin"
+        ],
+      }),
+    }}
+  />
+</head>
       <body
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground`}
       >
