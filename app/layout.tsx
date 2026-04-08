@@ -29,7 +29,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://trungtinh.site"),
-  title: "Le Van Trung Tinh | Fresher Full Stack Developer",
+  title: "Trung Tinh (Le Van Trung Tinh) - Backend Developer | Node.js, NestJS",
 description:
   "Trung Tinh (Le Van Trung Tinh) is a Backend Developer from Vietnam specializing in Node.js, NestJS, and scalable SaaS systems. Explore projects and experience.",
   generator: "Next.js",
@@ -44,10 +44,20 @@ description:
 ],
   authors: [{ name: "Le Van Trung Tinh" }],
   openGraph: {
-    title: "Trung Tinh (Le Van Trung Tinh) - Backend Developer | Node.js, NestJS",
-    description: "Passionate about Backend Development with Node.js & NestJS",
-    type: "website",
-  },
+  title: "Trung Tinh - Backend Developer",
+  description: "Node.js, NestJS, scalable backend systems",
+  url: "https://trungtinh.site",
+  siteName: "Trung Tinh Portfolio",
+  images: [
+    {
+      url: "/og.png",
+      width: 1200,
+      height: 630,
+    },
+  ],
+  locale: "en_US",
+  type: "website",
+},
   icons: {
     icon: [
       {
