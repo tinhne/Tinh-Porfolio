@@ -20,77 +20,77 @@ interface Project {
 const projects: Project[] = [
   {
     id: "01",
-    title: "MeetAI - Video Call SaaS",
+    title: "MeetAI — AI Video Meeting SaaS",
     description:
-      "A full-stack SaaS platform that enables video calls with AI-powered meeting summaries and transcription features.",
+      "A production-ready video meeting SaaS with real-time AI transcription & summarization via OpenAI Multimodal Live API. Full SaaS monetization with subscription & payment system.",
     challenge:
-      "Building a complete video calling solution with real-time AI processing for meeting summaries while managing user authentication and subscription states.",
+      "Building a complete video meeting platform with real-time AI processing for transcription and summarization, while handling subscription management, async background jobs, and maintaining a smooth user experience.",
     solution:
-      "Built with Next.js App Router for the full-stack architecture, Drizzle ORM for type-safe database operations, and BetterAuth for secure authentication. Integrated AI services for automatic call transcription and summary generation.",
+      "Built with Next.js full-stack architecture, Drizzle ORM for type-safe database operations, and BetterAuth for authentication. Designed async background jobs with Inngest to process transcripts without blocking the user flow. Implemented subscription & payment via Polar for end-to-end SaaS monetization. Deployed on Vercel with automated CI/CD.",
     image:
-      "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775272140/Screenshot_2026-04-04_at_10.05.58_pte6am.png",
+      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=600&fit=crop",
     tech: [
       "Next.js",
       "TypeScript",
       "Drizzle ORM",
-      "BetterAuth",
-      "PostgreSQL",
-      "AI SDK",
+      "OpenAI API",
+      "Inngest",
+      "Polar",
     ],
     github: "https://github.com/tinhne/meetai",
     live: "https://meetai-assistant.vercel.app",
-    year: "2026",
-  },
-  {
-    id: "02",
-    title: "Blog API Backend",
-    description:
-      "A production-ready RESTful API for a blog platform with comprehensive backend features including authentication, caching, and API documentation.",
-    challenge:
-      "Designing a scalable and maintainable backend architecture with proper security measures, rate limiting, and developer-friendly documentation.",
-    solution:
-      "Implemented using Node.js with Fastify framework for high performance. Added JWT authentication, Redis-based rate limiting, Swagger for API documentation, response caching, and Zod schema validation for type-safe request handling.",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
-    tech: ["Node.js", "Fastify", "JWT Auth", "Redis", "Swagger", "Zod"],
-    github: "https://github.com/tinhne/blogFinalProject",
     year: "2025",
   },
   {
-    id: "03",
+    id: "02",
     title: "Clinic Booking System",
     description:
-      "A healthcare appointment booking application with patient management, scheduling system, and an integrated chatbot for patient inquiries.",
+      "A healthcare appointment booking platform with core backend services for scheduling, patient management, JWT authentication, and real-time call streams for clinic–patient communication.",
     challenge:
-      "Building a reliable booking system that handles concurrent appointments, user authorization levels (admin/doctor/patient), and integrating a helpful chatbot assistant.",
+      "Designing reliable appointment scheduling with conflict prevention, multi-level authorization (admin/doctor/patient), and integrating real-time communication streams for seamless clinic workflow.",
     solution:
-      "Developed the complete backend including authentication & authorization system, appointment scheduling logic with conflict prevention, database schema design, and chatbot integration for answering common patient questions.",
+      "Designed core backend services for appointment scheduling, patient CRUD, and JWT authentication following RESTful API best practices. Integrated real-time call streams via Stream API and automated status update notifications to streamline clinic–patient communication flow.",
     image:
       "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775275949/original-62ae0e71b2d38d9c067f19bf8b976309_rhrlpk.webp",
-    tech: ["Node.js", "React", "MongoDB", "JWT", "Chatbot", "Prisma", "Stream"],
+    tech: ["React", "PostgreSQL", "JWT", "Stream API", "Prisma"],
     github: "https://github.com/tinhne/Clinic-Management",
     year: "2024",
   },
   {
-    id: "04",
+    id: "03",
     title: "Medical Diagnosis Chatbot",
     description:
-      "An ML-powered chatbot that analyzes symptoms and suggests potential diagnoses based on disease ontology data and association rule mining.",
+      "An ML-based diagnostic engine using XGBoost & Association Rules to identify disease patterns from symptom inputs, with a custom data pipeline crawling medical terms from Disease Ontology.",
     challenge:
-      "Collecting and processing medical data from Disease Ontology, finding meaningful relationships between symptoms and diseases, and training an accurate prediction model.",
+      "Collecting and processing medical data from Disease Ontology, discovering meaningful symptom-disease relationships through association rule mining, and building a reliable classification pipeline with synthetic data generation.",
     solution:
-      "Crawled data from Disease Ontology database, applied Association Rule Mining to discover entity relationships, performed data cleaning and preprocessing, generated synthetic user data for training. Built classification model using XGBoost. Note: Achieved 60% accuracy - identified that database quality and association rules need improvement for better results.",
+      "Developed a diagnostic engine using XGBoost + Association Rules (Apriori) to identify disease patterns. Built a custom data pipeline to crawl and map medical terms from Disease Ontology, followed by synthetic data generation and rigorous cleaning. Implemented secure authentication with Java Spring Boot using layered architecture.",
     image:
       "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop",
     tech: [
       "Python",
       "XGBoost",
-      "Data Crawling",
-      "Association Rules",
+      "Apriori",
+      "Java Spring Boot",
       "Pandas",
       "Scikit-learn",
     ],
-    github: "https://github.com",
+    github: "https://github.com/tinhne/capstons2",
+    year: "2025",
+  },
+  {
+    id: "04",
+    title: "Blog API Backend",
+    description:
+      "A scalable REST API built on Clean Architecture with JWT authentication and Redis caching to minimize DB round-trips on high-frequency reads.",
+    challenge:
+      "Designing a high-performance backend architecture with proper caching strategies, rate limiting, and developer-friendly API documentation while maintaining clean code separation.",
+    solution:
+      "Implemented using Fastify for high performance, with JWT authentication, Redis-based caching to reduce database load, Swagger for API documentation, and Zod schema validation for type-safe request handling. Followed Clean Architecture principles throughout.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    tech: ["Fastify", "TypeScript", "Redis", "PostgreSQL", "Swagger", "Zod"],
+    github: "https://github.com/tinhne/blogFinalProject",
     year: "2025",
   },
 ];
@@ -118,7 +118,7 @@ export function Projects() {
               Projects I&apos;ve
               <br />
               <span className="italic text-muted-foreground">
-                built & learned from
+                built & shipped
               </span>
             </h2>
           </div>

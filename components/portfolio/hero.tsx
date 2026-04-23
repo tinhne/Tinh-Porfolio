@@ -71,32 +71,34 @@ export function Hero() {
             className="lg:col-span-7"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] tracking-tight text-balance">
-              <span className="text-foreground">Building</span>
+              <span className="text-foreground">Crafting</span>
               <br />
-              <span className="text-primary">full-stack</span>
+              <span className="text-primary">scalable</span>
               <br />
-              <span className="text-foreground">applications</span>
+              <span className="text-foreground">systems</span>
               <br />
               <span className="italic text-muted-foreground">
-                from scratch.
+                end to end.
               </span>
             </h1>
 
             <div className="mt-12 max-w-lg">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Fresher Developer passionate about building
+                Software Engineer focused on building
                 <span className="text-foreground font-medium">
                   {" "}
-                  Full Stack
+                  production-ready systems
                 </span>{" "}
-                applications with
+                with
                 <span className="text-foreground font-medium"> Node.js</span>,
-                <span className="text-foreground font-medium"> NestJS</span> &
-                <span className="text-foreground font-medium"> Next.js</span>.
+                <span className="text-foreground font-medium"> TypeScript</span> &
+                <span className="text-foreground font-medium"> Java</span>.
+                Experienced in designing scalable APIs, applying clean architecture,
+                and integrating AI/ML into real-world applications.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                Eager to learn and grow. Open to work anywhere, ready to take on
-                new challenges.
+                Passionate about solving complex engineering problems and
+                contributing to high-impact product teams.
               </p>
             </div>
 
@@ -151,7 +153,6 @@ export function Hero() {
 
               <motion.a
                 href="/LeVanTrungTinh_CV.pdf"
-                download="SoftwareEngineer_LeVanTrungTinh_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
@@ -169,10 +170,10 @@ export function Hero() {
                     strokeLinecap="square"
                     strokeLinejoin="miter"
                     strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                Download CV
+                View CV
               </motion.a>
 
               <motion.a
@@ -200,9 +201,9 @@ export function Hero() {
                 About Me
               </span>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                A curious developer who loves building things from scratch. Open
-                to learning any technology that the job requires. Always ready
-                to take on new challenges.
+                Software Engineer from Da Nang, Vietnam. Experienced in
+                building production-ready backend systems and scalable APIs.
+                Open to any technology the job requires.
               </p>
             </div>
 

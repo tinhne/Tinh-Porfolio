@@ -62,7 +62,7 @@ export function Footer() {
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
                     </svg>
-                    Contact With me
+                    Get In Touch
                   </span>
                 </motion.a>
               </div>
@@ -132,12 +132,14 @@ export function Footer() {
                     {
                       name: "Resume",
                       href: "/LeVanTrungTinh_CV.pdf",
+                      external: true,
                     },
                     // { name: "Blog", href: "/blog" },
                   ].map((link) => (
                     <li key={link.name}>
                       <a
                         href={link.href}
+                        {...((link as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                         className="text-foreground hover:text-primary transition-colors duration-200 
                                  inline-flex items-center gap-2 group"
                       >
@@ -175,11 +177,10 @@ export function Footer() {
         >
           <p className="font-mono text-sm text-muted-foreground">
             Designed & Built by{" "}
-            <span className="text-foreground">Le Van Trung Tinh</span>
+            <span className="text-foreground">Tinhne</span>
           </p>
           <p className="font-mono text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} — Made with Next.js, Tailwind CSS
-            & Framer Motion
+            &copy; {new Date().getFullYear()} — tinhne
           </p>
         </motion.div>
       </div>

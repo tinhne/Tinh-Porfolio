@@ -29,23 +29,23 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://trungtinh.site"),
-  title: "Trung Tinh (Le Van Trung Tinh) - Backend Developer | Node.js, NestJS",
+  title: "Trung Tinh (Le Van Trung Tinh) - Full-Stack Developer | Next.js, TypeScript",
 description:
-  "Trung Tinh (Le Van Trung Tinh) is a Backend Developer from Vietnam specializing in Node.js, NestJS, and scalable SaaS systems. Explore projects and experience.",
+  "Trung Tinh (Le Van Trung Tinh) is a Full-Stack Developer from Vietnam specializing in TypeScript, Next.js, and scalable systems. Explore projects and experience.",
   generator: "Next.js",
   keywords: [
   "Trung Tinh",
   "Le Van Trung Tinh",
   "trungtinh",
   "Trung Tinh Developer",
-  "Backend Developer Vietnam",
-  "Node.js Developer",
-  "NestJS Developer",
+  "Full-Stack Developer Vietnam",
+  "TypeScript Developer",
+  "Next.js Developer",
 ],
   authors: [{ name: "Le Van Trung Tinh" }],
   openGraph: {
-  title: "Trung Tinh - Backend Developer",
-  description: "Node.js, NestJS, scalable backend systems",
+  title: "Trung Tinh - Full-Stack Developer",
+  description: "TypeScript, Next.js, scalable full-stack systems",
   url: "https://trungtinh.site",
   siteName: "Trung Tinh Portfolio",
   images: [
@@ -94,10 +94,10 @@ export default function RootLayout({
         "name": "Le Van Trung Tinh",
         "alternateName": "Trung Tinh",
         "url": "https://trungtinh.site",
-        "jobTitle": "Backend Developer",
+        "jobTitle": "Full-Stack Developer",
         "sameAs": [
-          "https://github.com/your-github",
-          "https://linkedin.com/in/your-linkedin"
+          "https://github.com/tinhne",
+          "https://www.linkedin.com/in/trung-t%C3%ADnh-l%C3%AA-v%C4%83n-b72669297/"
         ],
       }),
     }}

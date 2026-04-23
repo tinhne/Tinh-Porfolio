@@ -10,24 +10,24 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "Backend Core",
-    description: "Server & API Development",
-    skills: ["Node.js", "NestJS", "Fastify", "Express.js", "TypeScript", "REST API", "tRPC"],
+    name: "Core Languages",
+    description: "Primary Languages & Frameworks",
+    skills: ["TypeScript", "JavaScript", "React", "Next.js", "Fastify", "Express.js", "REST API", "tRPC"],
   },
   {
-    name: "Database",
+    name: "Database & ORM",
     description: "Data Storage & Management",
-    skills: ["PostgreSQL", "MySQL", "MongoDB", "Drizzle", "Prisma", "TypeORM", "Neon", "Pinecone"],
+    skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Drizzle ORM", "Prisma", "Neon", "Pinecone"],
   },
   {
-    name: "Frontend",
-    description: "User Interface Development",
-    skills: ["React", "Next.js", "HTML/CSS", "Tailwind CSS", "JavaScript"],
+    name: "AI / ML",
+    description: "Machine Learning & AI Integration",
+    skills: ["OpenAI API", "XGBoost", "Association Rules", "Pandas", "FastAPI", "Scikit-learn"],
   },
   {
-    name: "Tools & DevOps",
-    description: "Development Tools",
-    skills: ["Git", "Docker", "Postman", "VS Code", "Linux"],
+    name: "DevOps & Tools",
+    description: "Development & Deployment",
+    skills: ["Docker", "Git", "Linux", "Bash Scripting", "Postman", "Vercel", "Inngest", "Tailwind CSS"],
   },
 ]
 
