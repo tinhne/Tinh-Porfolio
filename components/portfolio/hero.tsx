@@ -150,7 +150,7 @@ export function Hero() {
               </motion.button>
 
               <motion.a
-                href="/SoftwareEngineer_LeVanTrungTinh_CV.pdf"
+                href="/LeVanTrungTinh_CV.pdf"
                 download="SoftwareEngineer_LeVanTrungTinh_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"

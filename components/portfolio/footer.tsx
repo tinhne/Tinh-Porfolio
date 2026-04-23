@@ -131,7 +131,7 @@ export function Footer() {
                     { name: "About", href: "#hero" },
                     {
                       name: "Resume",
-                      href: "/SoftwareEngineer_LeVanTrungTinh_CV.pdf",
+                      href: "/LeVanTrungTinh_CV.pdf",
                     },
                     // { name: "Blog", href: "/blog" },
                   ].map((link) => (
