@@ -76,93 +76,45 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="grid grid-cols-2 gap-8"
             >
-              {/* Social Links */}
-              <div>
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-                  Social
-                </span>
-                <ul className="mt-4 space-y-3">
-                  {[
-                    { name: "GitHub", href: "https://github.com/tinhne" },
-                    {
-                      name: "LinkedIn",
-                      href: "https://www.linkedin.com/in/trung-t%C3%ADnh-l%C3%AA-v%C4%83n-b72669297/",
-                    },
-                  ].map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-foreground hover:text-primary transition-colors duration-200 
-                                 inline-flex items-center gap-2 group"
+              <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
+                Social
+              </span>
+              <ul className="mt-4 space-y-3">
+                {[
+                  { name: "GitHub", href: "https://github.com/tinhne" },
+                  {
+                    name: "LinkedIn",
+                    href: "https://www.linkedin.com/in/trung-t%C3%ADnh-l%C3%AA-v%C4%83n-b72669297/",
+                  },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors duration-200 
+                               inline-flex items-center gap-2 group"
+                    >
+                      {link.name}
+                      <svg
+                        className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 
+                                 group-hover:translate-x-0 transition-all duration-200"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
-                        {link.name}
-                        <svg
-                          className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 
-                                   group-hover:translate-x-0 transition-all duration-200"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="square"
-                            strokeLinejoin="miter"
-                            strokeWidth={2}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Quick Links */}
-              <div>
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-                  Quick Links
-                </span>
-                <ul className="mt-4 space-y-3">
-                  {[
-                    { name: "Works", href: "#works" },
-                    { name: "About", href: "#hero" },
-                    {
-                      name: "Resume",
-                      href: "/LeVanTrungTinh_CV.pdf",
-                      external: true,
-                    },
-                    // { name: "Blog", href: "/blog" },
-                  ].map((link) => (
-                    <li key={link.name}>
-                      <a
-                        href={link.href}
-                        {...((link as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                        className="text-foreground hover:text-primary transition-colors duration-200 
-                                 inline-flex items-center gap-2 group"
-                      >
-                        {link.name}
-                        <svg
-                          className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 
-                                   group-hover:translate-x-0 transition-all duration-200"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="square"
-                            strokeLinejoin="miter"
-                            strokeWidth={2}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                        <path
+                          strokeLinecap="square"
+                          strokeLinejoin="miter"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
         </div>

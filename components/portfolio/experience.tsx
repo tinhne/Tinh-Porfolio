@@ -56,24 +56,31 @@ const experiences: ExperienceItem[] = [
 
 export function Experience() {
   return (
-    <section className="py-32 relative">
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="py-28 md:py-32 relative scroll-mt-11 bg-background"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-14 md:mb-16 max-w-2xl border-l-2 border-primary/35 pl-5 md:pl-6"
         >
-          <span className="font-mono text-sm text-primary uppercase tracking-widest">
-            // Proof of Work
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-serif font-bold text-foreground">
-            My
-            <br />
-            <span className="italic text-muted-foreground">experience</span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            Experience
+          </p>
+          <h2
+            id="experience-heading"
+            className="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground tracking-tight"
+          >
+            Roles &amp; impact
           </h2>
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
+            Recent positions, newest first.
+          </p>
         </motion.div>
 
         {/* Timeline */}

@@ -29,7 +29,11 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-screen relative overflow-hidden">
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      className="min-h-screen relative overflow-hidden scroll-mt-11"
+    >
       {/* Noise texture overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -44,19 +48,20 @@ export function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 font-mono text-sm text-muted-foreground mb-24 lg:mb-32"
+          className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-sm text-muted-foreground mb-16 lg:mb-24"
+          aria-label="Intro"
         >
           <span className="text-primary">~</span>
           <span className="text-muted-foreground">/</span>
-          <span className="text-foreground">le.van.trung.tinh</span>
+          <span className="text-foreground">portfolio</span>
           <span className="text-muted-foreground">/</span>
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-500 animate-pulse" />
-            <span className="text-emerald-500">available</span>
+            <span className="text-emerald-600 dark:text-emerald-500">open to roles</span>
           </span>
           <span className="text-muted-foreground">/</span>
-          <span className="text-muted-foreground">vietnam</span>
-          <span className="text-muted-foreground ml-auto hidden md:block">
+          <span className="text-muted-foreground">da nang</span>
+          <span className="text-muted-foreground w-full md:w-auto md:ml-auto md:text-right text-xs tracking-wide">
             {time} ICT
           </span>
         </motion.nav>
@@ -70,35 +75,33 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-7"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] tracking-tight text-balance">
-              <span className="text-foreground">Crafting</span>
+            <p className="font-mono text-sm text-muted-foreground tracking-wide uppercase mb-4">
+              Le Van Trung Tinh
+            </p>
+            <h1
+              id="hero-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold leading-[1.15] tracking-tight text-balance text-foreground"
+            >
+              Software engineer,
               <br />
-              <span className="text-primary">scalable</span>
-              <br />
-              <span className="text-foreground">systems</span>
-              <br />
-              <span className="italic text-muted-foreground">
-                end to end.
+              <span className="text-primary font-normal">
+                Java backend &amp; TypeScript stacks.
               </span>
             </h1>
 
-            <div className="mt-12 max-w-lg">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Software Engineer focused on building
-                <span className="text-foreground font-medium">
-                  {" "}
-                  production-ready systems
-                </span>{" "}
-                with
-                <span className="text-foreground font-medium"> Node.js</span>,
-                <span className="text-foreground font-medium"> TypeScript</span> &
-                <span className="text-foreground font-medium"> Java</span>.
-                Experienced in designing scalable APIs, applying clean architecture,
-                and integrating AI/ML into real-world applications.
+            <div className="mt-10 max-w-lg space-y-4">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                I ship APIs and services with{" "}
+                <span className="text-foreground font-medium">Java / Spring</span>,{" "}
+                <span className="text-foreground font-medium">Node.js</span>,{" "}
+                <span className="text-foreground font-medium">NestJS</span>, and{" "}
+                <span className="text-foreground font-medium">Next.js</span> when the
+                product needs a UI. PostgreSQL and clean boundaries are defaults, not
+                extras.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                Passionate about solving complex engineering problems and
-                contributing to high-impact product teams.
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                Recently interned on production backends (Fastify, tRPC); personal
+                work spans Spring, Nest, and ML-adjacent features where it fits.
               </p>
             </div>
 
@@ -183,7 +186,7 @@ export function Hero() {
                 className="px-6 py-3 border-2 border-border text-foreground font-mono text-sm
                          hover:border-primary hover:text-primary transition-colors duration-200 flex items-center h-[52px]"
               >
-                View Selected Works
+                See projects
               </motion.a>
             </div>
           </motion.div>
@@ -201,9 +204,8 @@ export function Hero() {
                 About Me
               </span>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                Software Engineer from Da Nang, Vietnam. Experienced in
-                building production-ready backend systems and scalable APIs.
-                Open to any technology the job requires.
+                Based in Da Nang. Prefer clear contracts between services and
+                databases; happy to pick up whatever the team standardises on.
               </p>
             </div>
 
@@ -232,9 +234,9 @@ export function Hero() {
                   ,
                 </p>
                 <p className="pl-4">
-                  <span className="text-emerald-400">role</span>:{" "}
+                  <span className="text-emerald-400">focus</span>:{" "}
                   <span className="text-amber-400">
-                    &quot;Full Stack Developer&quot;
+                    &quot;Backend &amp; full-stack&quot;
                   </span>
                   ,
                 </p>

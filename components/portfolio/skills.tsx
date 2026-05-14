@@ -12,7 +12,20 @@ const skillCategories: SkillCategory[] = [
   {
     name: "Core Languages",
     description: "Primary Languages & Frameworks",
-    skills: ["TypeScript", "JavaScript", "React", "Next.js", "Fastify", "Express.js", "REST API", "tRPC"],
+    skills: [
+      "Node.js",
+      "TypeScript",
+      "JavaScript",
+      "Java",
+      "Spring Boot",
+      "NestJS",
+      "React",
+      "Next.js",
+      "Fastify",
+      "Express.js",
+      "REST API",
+      "tRPC",
+    ],
   },
   {
     name: "Database & ORM",
@@ -33,7 +46,11 @@ const skillCategories: SkillCategory[] = [
 
 export function Skills() {
   return (
-    <section className="py-32 bg-card relative overflow-hidden">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="py-28 md:py-32 bg-card relative overflow-hidden scroll-mt-11"
+    >
       {/* Background grid pattern */}
       <div 
         className="absolute inset-0 opacity-[0.02]"
@@ -49,21 +66,23 @@ export function Skills() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-14 md:mb-16 max-w-2xl border-l-2 border-primary/35 pl-5 md:pl-6"
         >
-          <span className="font-mono text-sm text-primary uppercase tracking-widest">
-            // Tech Stack
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-serif font-bold text-foreground">
-            What I&apos;ve<br />
-            <span className="italic text-muted-foreground">learned & used</span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            Stack
+          </p>
+          <h2
+            id="skills-heading"
+            className="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground tracking-tight"
+          >
+            Tools I use
           </h2>
-          <p className="mt-4 text-muted-foreground max-w-xl">
-            Technologies I&apos;ve learned and applied through personal projects, coursework, and internships.
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
+            Pulled from real projects and work — not a keyword dump.
           </p>
         </motion.div>
 
