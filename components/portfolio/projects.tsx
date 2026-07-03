@@ -25,6 +25,29 @@ interface Project {
 const projects: Project[] = [
   {
     id: "01",
+    title: "Android Automotive Telemetry System",
+    description:
+      "High-frequency vehicle telemetry ingestion and warning system designed for Android Automotive OS (AAOS), decoupling real-time STOMP WebSocket broadcast (10Hz) from throttled PostgreSQL persistence (1Hz) to maintain system responsiveness.",
+    challenge:
+      "Broadcasting high-frequency sensor streams (10Hz) to telemetry clients without causing database write saturation, while preventing event storms from rapid warning threshold crossings.",
+    solution:
+      "Designed a decoupled ingestion-to-storage pipeline utilizing Spring Boot's TaskExecutor. Telemetry frames are broadcasted instantly to clients via an in-memory STOMP broker. Database writes are batched and flushed asynchronously at 1Hz. Implemented a stateful warning evaluation engine with dynamic cooldown mechanics to prevent warning log spam.",
+    image: "/automotive.png",
+    tech: ["Spring Boot", "Kotlin", "Android SDK", "WebSocket (STOMP)", "PostgreSQL", "JPA/Hibernate"],
+    roleTags: ["Backend", "IoT / Systems"],
+    features: [
+      "Real-time sensor telemetry streaming (10Hz) over WebSockets/STOMP",
+      "Asynchronous throttled DB persistence (1Hz) using dedicated ThreadPools",
+      "Configurable threshold alert system (Speed, RPM, Engine Temp, Fuel, Tire Pressure)",
+      "Stateful warning engine with cooldown intervals to suppress event storms",
+      "Automotive HMI UI simulator dashboard built for AAOS (Android API 34)",
+      "Optimized query performance via compound database indexes on (vehicle_id, recorded_at DESC)"
+    ],
+    github: "https://github.com/tinhne/vehicle-telemetry-system",
+    year: "2025",
+  },
+  {
+    id: "02",
     title: "Book Review Platform",
     description:
       "Full-stack book catalogue with JWT auth, dual review types, and server-driven listing with search and filters. Spring handles business rules; React is the client.",
@@ -46,7 +69,7 @@ const projects: Project[] = [
     year: "2024",
   },
   {
-    id: "02",
+    id: "03",
     title: "MeetAI — AI Video Meeting SaaS",
     description:
       "Video meetings with live AI transcription and summaries, subscription billing, and heavy AI work moved off the request path so the app stays responsive.",
@@ -76,7 +99,7 @@ const projects: Project[] = [
     year: "2025",
   },
   {
-    id: "03",
+    id: "04",
     title: "Devhelp — Mezon Developer Bot",
     description:
       "NestJS bot for Mezon: command snippets, bug triage with severity, and linked solutions — searchable and recoverable after soft deletes.",
@@ -101,7 +124,7 @@ const projects: Project[] = [
     year: "2025",
   },
   {
-    id: "04",
+    id: "05",
     title: "Clinic Booking System",
     description:
       "Clinic scheduling with patient records, JWT-protected APIs, and Stream-powered calls so staff and patients can connect without a separate app stack.",
@@ -124,7 +147,7 @@ const projects: Project[] = [
     year: "2024",
   },
   {
-    id: "05",
+    id: "06",
     title: "MazaBank — Desktop Banking App",
     description:
       "JavaFX desktop app for a small bank: role-based admin and client flows, transfers, deposits, and account types with different limits — all persisted locally.",
@@ -148,7 +171,7 @@ const projects: Project[] = [
     year: "2024",
   },
   {
-    id: "06",
+    id: "07",
     title: "Medical Diagnosis Chatbot",
     description:
       "Symptom-to-diagnosis pipeline combining gradient boosting and association rules, with a Spring Boot API for access control in front of the Python ML core.",

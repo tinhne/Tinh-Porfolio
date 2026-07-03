@@ -18,6 +18,7 @@ const skillCategories: SkillCategory[] = [
       "JavaScript",
       "Java",
       "Spring Boot",
+      "Android (AAOS)",
       "NestJS",
       "React",
       "Next.js",
