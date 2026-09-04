@@ -33,7 +33,14 @@ const projects: Project[] = [
     solution:
       "Designed a decoupled ingestion-to-storage pipeline utilizing Spring Boot's TaskExecutor. Telemetry frames are broadcasted instantly to clients via an in-memory STOMP broker. Database writes are batched and flushed asynchronously at 1Hz. Implemented a stateful warning evaluation engine with dynamic cooldown mechanics to prevent warning log spam.",
     image: "/automotive.png",
-    tech: ["Spring Boot", "Kotlin", "Android SDK", "WebSocket (STOMP)", "PostgreSQL", "JPA/Hibernate"],
+    tech: [
+      "Spring Boot",
+      "Kotlin",
+      "Android SDK",
+      "WebSocket (STOMP)",
+      "PostgreSQL",
+      "JPA/Hibernate",
+    ],
     roleTags: ["Backend", "IoT / Systems"],
     features: [
       "Real-time sensor telemetry streaming (10Hz) over WebSockets/STOMP",
@@ -41,9 +48,9 @@ const projects: Project[] = [
       "Configurable threshold alert system (Speed, RPM, Engine Temp, Fuel, Tire Pressure)",
       "Stateful warning engine with cooldown intervals to suppress event storms",
       "Automotive HMI UI simulator dashboard built for AAOS (Android API 34)",
-      "Optimized query performance via compound database indexes on (vehicle_id, recorded_at DESC)"
+      "Optimized query performance via compound database indexes on (vehicle_id, recorded_at DESC)",
     ],
-    github: "https://github.com/tinhne/vehicle-telemetry-system",
+    github: "https://github.com/tinhne/vehicle-telemetry",
     year: "2025",
   },
   {
