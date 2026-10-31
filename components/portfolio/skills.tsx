@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { skillGroups, type Skill } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
-import { RefLinks, SectionHeader } from "./primitives";
+import { RefLinks } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 function Readout({ skill, compact }: { skill: Skill | null; compact?: boolean }) {
   return (

@@ -30,15 +30,22 @@ export const site = {
   availability: "Open to roles · Hanoi or remote" as string | null,
 } as const;
 
-export const navItems = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "ai", label: "AI & Product" },
-  { id: "skills", label: "Skills" },
-  { id: "contact", label: "Contact" },
+/**
+ * Numbered page sections, in page order. Section headers, the nav, the
+ * mobile menu and the side rail all read from here so numbers never drift.
+ */
+export const sections = [
+  { id: "about", label: "About", index: "01" },
+  { id: "experience", label: "Experience", index: "02" },
+  { id: "projects", label: "Projects", index: "03" },
+  { id: "ai", label: "AI & Product", index: "04" },
+  { id: "skills", label: "Skills", index: "05" },
+  { id: "recognition", label: "Achievements", index: "06" },
+  { id: "contact", label: "Contact", index: "07" },
 ] as const;
+
+/** Every observable region of the home page, hero first. */
+export const pageSectionIds = ["home", ...sections.map((s) => s.id)] as const;
 
 /* ------------------------------------------------------------------ */
 /* Evidence references — where a skill or capability was actually used */

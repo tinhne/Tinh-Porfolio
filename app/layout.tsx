@@ -5,6 +5,8 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/portfolio/nav";
 import { Footer } from "@/components/portfolio/footer";
+import { SectionRail } from "@/components/portfolio/section-rail";
+import { Cursor } from "@/components/portfolio/cursor";
 import { site } from "@/lib/content";
 
 const geist = Geist({
@@ -119,8 +121,10 @@ export default function RootLayout({
         </a>
         <Providers>
           <Nav />
+          <SectionRail />
           {children}
           <Footer />
+          <Cursor />
         </Providers>
         <Analytics />
       </body>

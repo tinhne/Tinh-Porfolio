@@ -331,6 +331,12 @@
   animation: pulse-dot 2.4s ease-out infinite;
 }
 
+/* Over labelled targets the custom cursor bubble stands in for the system one */
+.has-cursor [data-cursor],
+.has-cursor [data-cursor] * {
+  cursor: none;
+}
+
 /* Product screenshots sit slightly muted until you engage with them */
 .shot {
   filter: var(--shot-filter);

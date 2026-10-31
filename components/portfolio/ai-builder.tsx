@@ -2,7 +2,8 @@ import { aiWorkflow, evidenceLabels, type Evidence } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { AiCapabilities } from "./ai-capabilities";
 import { Reveal } from "./reveal";
-import { EvidenceMark, RegMarks, SectionHeader } from "./primitives";
+import { EvidenceMark, RegMarks } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 function Lane({ who }: { who: "me" | "agent" }) {
   return (

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowDown, ArrowUpRight, Check, Copy } from "lucide-react";
 import { site } from "@/lib/content";
 import { Reveal } from "./reveal";
+import { SectionHeader } from "./section-header";
 import { Magnetic } from "./magnetic";
 
 const channels = [
@@ -36,26 +37,18 @@ export function Contact() {
       </div>
 
       <div className="container-x py-24 md:py-32">
-        <Reveal>
-          <div className="label flex items-center gap-4 border-t border-rule pt-4">
-            <span className="text-brand">§ 07</span>
-            <span>Contact</span>
-            <span className="ml-auto hidden text-ink-4 sm:block">{site.location} · GMT+7</span>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.05}>
-          <h2 id="contact-title" className="display mt-12 max-w-[12ch] text-ink md:mt-16">
-            Let&apos;s build something real<span className="text-brand">.</span>
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <p className="lead mt-8 max-w-[48ch] text-ink-3">
-            Hiring for a software, full-stack or AI product role — or building something that needs
-            another engineer? Email is the fastest way to reach me.
-          </p>
-        </Reveal>
+        <SectionHeader
+          id="contact-title"
+          index="07"
+          label="Contact"
+          size="display"
+          title={
+            <>
+              Let&apos;s build something real<span className="text-brand">.</span>
+            </>
+          }
+          intro="Hiring for a software, full-stack or AI product role — or building something that needs another engineer? Email is the fastest way to reach me."
+        />
 
         <Reveal delay={0.15} className="mt-14 md:mt-20">
           <div className="flex flex-col gap-5 border-y border-rule py-8 md:flex-row md:items-center md:justify-between">

@@ -1,7 +1,7 @@
 import { about, approach, exploring } from "@/lib/content";
 import { Reveal } from "./reveal";
 import { ScrollText } from "./scroll-text";
-import { SectionHeader } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 export function About() {
   return (
