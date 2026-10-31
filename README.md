@@ -1,109 +1,80 @@
-# 🚀 Tinhne Portfolio
+# Trung Tinh — Personal Portfolio
 
-Welcome to **Tinhne Portfolio**! This is a modern, responsive, and beautifully designed personal portfolio built to showcase projects, skills, and professional experience. 
+Source code for [trungtinh.site](https://trungtinh.site), the personal portfolio of Lê Văn Trung Tính. It is a single-page Next.js site that presents selected projects, technical skills, and work experience, with a downloadable CV.
 
-Bootstrapped with [v0](https://v0.app) and crafted with the latest web technologies, this project offers a seamless and interactive user experience.
+[![Live site](https://img.shields.io/badge/live-trungtinh.site-5b5bd6?style=flat-square)](https://trungtinh.site)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)
 
----
+![Portfolio home page](docs/screenshots/portfolio.webp)
 
-## ✨ Features
+## Key features
 
-- **Modern Tech Stack**: Built with Next.js, React, and TypeScript.
-- **Stunning UI**: Styled with Tailwind CSS and Radix UI primitives.
-- **Smooth Animations**: Powered by Framer Motion for delightful micro-interactions.
-- **Fully Responsive**: Optimized for mobile, tablet, and desktop viewing.
-- **Dark Mode Support**: Built-in support for multiple color themes.
-- **SEO Optimized**: Leveraging Next.js App Router metadata features.
+- **Single-page layout** with anchored sections — Hero, Projects, Skills, Experience — and a sticky section navigator (`components/portfolio/section-nav.tsx`).
+- **Project case studies.** Each project row opens an accessible modal (`role="dialog"`, `aria-modal`) with the challenge, solution, features, stack, and links (`components/portfolio/projects.tsx`).
+- **Light and dark themes** via `next-themes`, with a floating toggle (`components/theme-toggle.tsx`).
+- **One-click contact.** "Copy email" uses the Clipboard API; the CV is served as a static PDF from `public/`.
+- **Search-engine ready.** App Router metadata, Open Graph tags, JSON-LD `Person` schema, `sitemap.ts`, and `robots.ts`.
+- **Motion with restraint.** Entrance and in-view transitions with Framer Motion.
+- **Vercel Analytics** for page-view tracking.
 
----
+## Tech stack
 
-## 🛠️ Tech Stack
+| Layer | Technology |
+| --- | --- |
+| Framework | Next.js 16 (App Router), React 19 |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS 4, CSS variables, shadcn/ui (Radix primitives) |
+| Motion | Framer Motion 12 |
+| Fonts | Space Grotesk, JetBrains Mono, Playfair Display (`next/font/google`) |
+| Hosting | Vercel (custom domain `trungtinh.site`) |
 
-- **Framework:** [Next.js](https://nextjs.org/) (App Router)
-- **Library:** [React](https://react.dev/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components:** [Radix UI](https://www.radix-ui.com/), [Shadcn UI](https://ui.shadcn.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Form Handling:** [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+## Project structure
 
----
+```text
+app/
+  layout.tsx          Root layout: fonts, metadata, JSON-LD, theme provider, analytics
+  page.tsx            Composes the portfolio sections
+  sitemap.ts          Generated sitemap
+  robots.ts           Crawl rules
+components/
+  portfolio/          Page sections: hero, projects, skills, experience, footer, section-nav
+  ui/                 shadcn/ui primitives
+  theme-provider.tsx  next-themes wrapper
+  theme-toggle.tsx    Light/dark switch
+public/               CV (PDF), project screenshots, icons
+```
 
-## 🚀 Getting Started
+Content (projects, skills, experience) lives as typed arrays at the top of each section component, so updating the site is a data edit rather than a layout change.
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+## Getting started
 
-### Prerequisites
+**Prerequisites:** Node.js 20.9 or newer and [pnpm](https://pnpm.io/).
 
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine. We recommend using at least `Node v18.x`.
+```bash
+git clone https://github.com/tinhne/Tinh-Porfolio.git
+cd Tinh-Porfolio
+pnpm install
+pnpm dev
+```
 
-### Installation
+Open <http://localhost:3000>.
 
-1. **Clone the repository:**
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Create a production build |
+| `pnpm start` | Serve the production build |
 
-   ```bash
-   git clone https://github.com/tinhne/tinhne-portfolio.git
-   cd tinhne-portfolio
-   ```
+No environment variables are required.
 
-2. **Install dependencies:**
+## Deployment
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+The site is deployed on Vercel and served from the custom domain [trungtinh.site](https://trungtinh.site).
 
-3. **Run the development server:**
+## Author
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+**Lê Văn Trung Tính** — Software Engineer | AI Product Builder
 
-4. **Open the app:**  
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
----
-
-## 🏗️ Project Structure
-
-- `app/` - Next.js App Router pages and layouts.
-- `components/` - Reusable React components (UI elements, layout parts).
-- `lib/` - Utility functions and helpers.
-- `public/` - Static assets like images and fonts.
-
----
-
-## 🚀 Deployment
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js. Every merge to `main` will automatically deploy if linked to your Vercel project.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 Acknowledgements
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- Website: [trungtinh.site](https://trungtinh.site)
+- GitHub: [@tinhne](https://github.com/tinhne)
