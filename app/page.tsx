@@ -1,19 +1,23 @@
-import { SectionNav } from "@/components/portfolio/section-nav"
 import { Hero } from "@/components/portfolio/hero"
-import { Projects } from "@/components/portfolio/projects"
-import { Skills } from "@/components/portfolio/skills"
+import { About } from "@/components/portfolio/about"
 import { Experience } from "@/components/portfolio/experience"
-import { Footer } from "@/components/portfolio/footer"
+import { Projects } from "@/components/portfolio/projects"
+import { AiBuilder } from "@/components/portfolio/ai-builder"
+import { Skills } from "@/components/portfolio/skills"
+import { Achievements } from "@/components/portfolio/achievements"
+import { Contact } from "@/components/portfolio/contact"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <SectionNav />
+    <main id="main">
       <Hero />
-      <Projects />
-      <Skills />
+      <About />
       <Experience />
-      <Footer />
+      <Projects />
+      <AiBuilder />
+      <Skills />
+      <Achievements />
+      <Contact />
     </main>
   )
 }
