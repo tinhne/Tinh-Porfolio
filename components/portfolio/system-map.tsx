@@ -169,10 +169,10 @@ export function SystemMap() {
                 onFocus={() => setActive(node)}
                 onClick={() => setActive(node)}
                 className={cn(
-                  "fade-up absolute flex border bg-canvas text-left transition-[border-color,background-color,opacity] duration-300",
+                  "fade-up absolute flex border bg-canvas text-left transition-[border-color,background-color,opacity] duration-300 before:absolute before:-inset-1.5 before:content-['']",
                   isBar
                     ? "items-center justify-between gap-3 px-2 sm:px-3"
-                    : "flex-col items-center justify-center px-1 sm:items-start sm:justify-between sm:px-2.5 sm:py-2",
+                    : "flex-col items-center justify-center px-1 sm:items-start sm:justify-between sm:px-2.5 sm:py-2 lg:items-center lg:justify-center lg:px-1 lg:py-0 xl:items-start xl:justify-between xl:px-2.5 xl:py-2",
                   isActive
                     ? "z-10 border-brand bg-panel"
                     : related
@@ -190,14 +190,14 @@ export function SystemMap() {
               >
                 <span
                   className={cn(
-                    "font-mono text-[8.5px] uppercase leading-none tracking-[0.12em] sm:text-[10px]",
+                    "font-mono text-[9.5px] uppercase leading-none tracking-[0.12em] sm:text-[11px]",
                     isActive ? "text-brand" : "text-ink-3",
                   )}
                 >
-                  <span className="hidden text-ink-4 sm:inline">N.0{i + 1} </span>
+                  <span className="hidden text-ink-4 sm:inline lg:hidden xl:inline">N.0{i + 1} </span>
                   {node.label}
                 </span>
-                <span className="hidden truncate text-[12px] leading-tight text-ink sm:block md:text-[13px]">
+                <span className="hidden truncate text-[13px] leading-tight text-ink sm:block md:text-[14px] lg:hidden xl:block">
                   {node.short}
                 </span>
               </button>
@@ -214,13 +214,13 @@ export function SystemMap() {
             {active ? `N.0${activeIndex + 1}` : "Read"}
           </span>
           {active ? (
-            <span className="text-[13px] leading-relaxed text-ink-3 sm:text-sm">
+            <span className="text-[14px] leading-relaxed text-ink-3 sm:text-[15px]">
               <span className="text-ink">{active.tech}</span>
               <span className="text-ink-4"> — used in </span>
               <RefLinks ids={active.refs} className="align-baseline" />
             </span>
           ) : (
-            <span className="text-[13px] leading-relaxed text-ink-3 sm:text-sm">
+            <span className="text-[14px] leading-relaxed text-ink-3 sm:text-[15px]">
               The shape of the systems I build. Hover or tap a node to see the stack and the projects
               where I used it.
             </span>

@@ -17,17 +17,17 @@ function CapabilityItems({ capability }: { capability: Capability }) {
           <div className="flex items-start gap-2.5">
             <EvidenceMark kind={item.evidence} className="mt-[0.4em]" />
             <div>
-              <p className="text-[15px] font-medium text-ink">{item.name}</p>
-              <p className="mt-0.5 font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-4">
+              <p className="text-[16px] font-medium text-ink">{item.name}</p>
+              <p className="mt-0.5 font-mono text-[11.5px] uppercase tracking-[0.1em] text-ink-4">
                 {evidenceLabels[item.evidence]}
               </p>
             </div>
           </div>
           <div className="pl-5 sm:pl-0">
-            <p className="text-[14.5px] leading-relaxed text-ink-3">{item.detail}</p>
+            <p className="text-[16px] leading-relaxed text-ink-3">{item.detail}</p>
             {item.refs && (
               <p className="mt-1.5 text-ink-4">
-                <span className="font-mono text-[11px]">→ </span>
+                <span className="font-mono text-[12px]">→ </span>
                 <RefLinks ids={item.refs} />
               </p>
             )}
@@ -65,9 +65,9 @@ export function AiCapabilities() {
       <div className="space-y-12 md:hidden">
         {aiCapabilities.map((cap) => (
           <div key={cap.key}>
-            <p className="font-mono text-[12px] text-brand">{cap.key}</p>
+            <p className="font-mono text-[13px] text-brand">{cap.key}</p>
             <h4 className="mt-2 text-xl font-medium tracking-tight text-ink">{cap.title}</h4>
-            <p className="mb-5 mt-1.5 text-[15px] text-ink-3">{cap.summary}</p>
+            <p className="mb-5 mt-1.5 text-[16px] text-ink-3">{cap.summary}</p>
             <CapabilityItems capability={cap} />
           </div>
         ))}
@@ -108,19 +108,19 @@ export function AiCapabilities() {
                     transition={{ type: "spring", stiffness: 380, damping: 34 }}
                   />
                 )}
-                <span className={cn("font-mono text-[12px]", selected ? "text-brand" : "text-ink-4")}>
+                <span className={cn("font-mono text-[13px]", selected ? "text-brand" : "text-ink-4")}>
                   {cap.key}
                 </span>
                 <span>
                   <span
                     className={cn(
-                      "block text-[17px] font-medium tracking-tight transition-colors",
+                      "block text-[18px] font-medium tracking-tight transition-colors",
                       selected ? "text-ink" : "text-ink-3",
                     )}
                   >
                     {cap.title}
                   </span>
-                  <span className="mt-1 block text-[13.5px] leading-snug text-ink-4">
+                  <span className="mt-1 block text-[15px] leading-snug text-ink-4">
                     {cap.summary}
                   </span>
                 </span>

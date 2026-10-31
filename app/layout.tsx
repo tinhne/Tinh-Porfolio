@@ -112,7 +112,7 @@ export default function RootLayout({
         <div id="top" />
         <a
           href="#main"
-          className="fixed left-4 top-3 z-[70] -translate-y-20 rounded-[2px] bg-ink px-3 py-2 text-sm text-canvas transition-transform focus:translate-y-0"
+          className="fixed left-4 top-3 z-[70] -translate-y-20 rounded-[2px] bg-ink px-3 py-2 text-[15px] text-canvas transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>

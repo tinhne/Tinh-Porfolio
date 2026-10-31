@@ -8,7 +8,7 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-title"
-      className="border-t border-rule bg-canvas-2/50 py-28 md:py-40"
+      className="border-t border-rule bg-canvas-2/50 py-24 md:py-32"
     >
       <div className="container-x">
         <SectionHeader
@@ -37,7 +37,7 @@ export function Experience() {
                     job.current ? "border-pulse bg-pulse" : "border-rule-strong bg-canvas",
                   )}
                 />
-                <p className="font-mono text-[13px] text-ink-2">
+                <p className="font-mono text-[14px] text-ink-2">
                   {job.current ? (
                     <span className="inline-flex items-center gap-2">
                       <span className="pulse-dot size-1.5 rounded-full bg-pulse" />
@@ -68,15 +68,15 @@ export function Experience() {
                     job.company
                   )}
                 </h3>
-                <p className="mt-1.5 text-[15px] text-ink-2">{job.role}</p>
-                <p className="mt-5 max-w-[62ch] text-[15px] leading-relaxed text-ink-3">
+                <p className="mt-1.5 text-[16px] text-ink-2">{job.role}</p>
+                <p className="mt-5 max-w-[62ch] text-[16px] leading-relaxed text-ink-3">
                   {job.context}
                 </p>
 
                 <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-12">
                   <ul className="space-y-3 md:col-span-8">
                     {job.contributions.map((item) => (
-                      <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-2">
+                      <li key={item} className="flex gap-3 text-[16px] leading-relaxed text-ink-2">
                         <span aria-hidden className="mt-[0.7em] h-px w-3 shrink-0 bg-brand" />
                         {item}
                       </li>
@@ -97,7 +97,7 @@ export function Experience() {
         </ol>
 
         <Reveal>
-          <p className="mt-2 border-t border-rule pt-6 text-[14px] text-ink-3">
+          <p className="mt-2 border-t border-rule pt-6 text-[15px] text-ink-3">
             The one-page version, with education and certifications, is in my{" "}
             <ExternalLink href="/LeVanTrungTinh_CV.pdf">resume</ExternalLink>.
           </p>

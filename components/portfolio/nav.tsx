@@ -79,12 +79,12 @@ export function Nav() {
         <nav aria-label="Primary" className="container-x flex h-16 items-center gap-6">
           <Link
             href={onHome ? "#home" : "/"}
-            className="group mr-auto flex items-center gap-2.5 text-[15px] font-medium tracking-tight text-ink"
+            className="group mr-auto flex items-center gap-2.5 text-[16px] font-medium tracking-tight text-ink"
             onClick={() => setOpen(false)}
           >
             <span
               aria-hidden
-              className="grid size-6 place-items-center border border-rule-strong font-mono text-[10px] text-ink-2 transition-colors group-hover:border-brand group-hover:text-brand"
+              className="grid size-6 place-items-center border border-rule-strong font-mono text-[11px] text-ink-2 transition-colors group-hover:border-brand group-hover:text-brand"
             >
               T
             </span>
@@ -103,11 +103,11 @@ export function Nav() {
                       href={href(item.id)}
                       aria-current={isActive ? "location" : undefined}
                       className={cn(
-                        "relative flex items-baseline gap-1.5 px-3 py-2 text-[13px] transition-colors",
+                        "relative flex items-baseline gap-1.5 px-3 py-2 text-[14px] transition-colors",
                         isActive ? "text-ink" : "text-ink-3 hover:text-ink",
                       )}
                     >
-                      <span className="font-mono text-[10px] text-ink-4">0{i + 1}</span>
+                      <span className="font-mono text-[11px] text-ink-4">0{i + 1}</span>
                       {item.label}
                       {isActive && (
                         <motion.span
@@ -128,7 +128,7 @@ export function Nav() {
             <a
               href={site.resume}
               download={site.resumeFileName}
-              className="hidden h-9 items-center gap-2 rounded-[2px] border border-rule-strong px-3 text-[13px] text-ink transition-colors hover:border-ink sm:inline-flex"
+              className="hidden h-9 items-center gap-2 rounded-[2px] border border-rule-strong px-3 text-[14px] text-ink transition-colors hover:border-ink sm:inline-flex"
             >
               Resume
               <ArrowDown className="size-3.5" aria-hidden />
@@ -181,7 +181,7 @@ export function Nav() {
                       onClick={() => setOpen(false)}
                       className="flex items-baseline gap-4 py-4 text-[2rem] font-medium leading-none tracking-[-0.03em] text-ink"
                     >
-                      <span className="font-mono text-[11px] tracking-normal text-brand">
+                      <span className="font-mono text-[12px] tracking-normal text-brand">
                         0{i}
                       </span>
                       {item.label}
@@ -193,7 +193,7 @@ export function Nav() {
                 <a
                   href={site.resume}
                   download={site.resumeFileName}
-                  className="inline-flex h-11 items-center gap-2 rounded-[2px] bg-ink px-4 text-[15px] font-medium text-canvas"
+                  className="inline-flex h-11 items-center gap-2 rounded-[2px] bg-ink px-4 text-[16px] font-medium text-canvas"
                 >
                   Download resume <ArrowDown className="size-4" aria-hidden />
                 </a>

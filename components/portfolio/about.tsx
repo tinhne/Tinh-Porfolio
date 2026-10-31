@@ -5,7 +5,7 @@ import { SectionHeader } from "./primitives";
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="pb-28 pt-20 md:pb-40 md:pt-28">
+    <section id="about" aria-labelledby="about-title" className="pb-24 pt-16 md:pb-32 md:pt-24">
       <div className="container-x">
         <SectionHeader
           id="about-title"
@@ -25,7 +25,7 @@ export function About() {
                   className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-rule py-3.5"
                 >
                   <dt className="label pt-0.5">{fact.label}</dt>
-                  <dd className="text-[15px] text-ink">{fact.value}</dd>
+                  <dd className="text-[16px] text-ink">{fact.value}</dd>
                 </div>
               ))}
             </dl>
@@ -64,9 +64,9 @@ export function About() {
                   aria-hidden
                   className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-brand transition-transform duration-700 ease-out-expo group-hover:scale-x-100"
                 />
-                <span className="font-mono text-[11px] text-brand">0{i + 1}</span>
-                <p className="mt-6 text-lg font-medium tracking-tight text-ink">{step.title}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-3">{step.body}</p>
+                <span className="font-mono text-[12px] text-brand">0{i + 1}</span>
+                <p className="mt-6 text-xl font-medium tracking-tight text-ink">{step.title}</p>
+                <p className="mt-2 text-[16px] leading-relaxed text-ink-3">{step.body}</p>
               </Reveal>
             ))}
           </ol>
@@ -78,7 +78,7 @@ export function About() {
             <h3 className="text-xl font-medium tracking-tight text-ink md:text-2xl">
               Currently exploring
             </h3>
-            <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-ink-3">
+            <p className="mt-3 max-w-[34ch] text-[16px] leading-relaxed text-ink-3">
               Areas I&apos;m actively learning. Interested, practising — not claiming expertise.
             </p>
           </Reveal>
@@ -90,11 +90,11 @@ export function About() {
                 delay={i * 0.05}
                 className="group grid grid-cols-1 gap-1 border-b border-rule py-4 sm:grid-cols-[1fr_1.3fr_auto] sm:items-baseline sm:gap-6"
               >
-                <span className="text-[15px] text-ink transition-colors group-hover:text-brand">
+                <span className="text-[16px] text-ink transition-colors group-hover:text-brand">
                   {item.topic}
                 </span>
-                <span className="text-[14px] text-ink-3">{item.detail}</span>
-                <span className="label hidden border border-dashed border-rule-strong px-2 py-0.5 text-[10px] text-ink-4 sm:inline">
+                <span className="text-[15px] text-ink-3">{item.detail}</span>
+                <span className="label hidden border border-dashed border-rule-strong px-2 py-0.5 text-[11px] text-ink-4 sm:inline">
                   Learning
                 </span>
               </Reveal>

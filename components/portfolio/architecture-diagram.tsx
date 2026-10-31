@@ -29,7 +29,7 @@ export function ArchitectureDiagram({
         {layers.map((layer, i) => (
           <li key={layer.name}>
             <div className="relative grid grid-cols-[3.5rem_1fr] items-center gap-4 md:grid-cols-[6.5rem_1fr] md:gap-6">
-              <span className="font-mono text-[10px] uppercase leading-tight tracking-[0.12em] text-ink-3 md:text-[11px]">
+              <span className="font-mono text-[11px] uppercase leading-tight tracking-[0.12em] text-ink-3 md:text-[12px]">
                 <span className="block text-ink-4">L{i + 1}</span>
                 {layer.name}
               </span>
@@ -41,7 +41,7 @@ export function ArchitectureDiagram({
                 {layer.nodes.map((node) => (
                   <li
                     key={node}
-                    className="border border-rule-strong bg-canvas px-2.5 py-1.5 text-[13px] text-ink md:px-3 md:text-[14px]"
+                    className="border border-rule-strong bg-canvas px-2.5 py-1.5 text-[14px] text-ink md:px-3 md:text-[15px]"
                   >
                     {node}
                   </li>
@@ -51,7 +51,7 @@ export function ArchitectureDiagram({
             {flows[i] && (
               <div className="grid grid-cols-[3.5rem_1fr] gap-4 py-3 md:grid-cols-[6.5rem_1fr] md:gap-6">
                 <span />
-                <span className="flex items-center gap-2 pl-3 font-mono text-[11px] text-ink-4 md:pl-4">
+                <span className="flex items-center gap-2 pl-3 font-mono text-[12px] text-ink-4 md:pl-4">
                   <span aria-hidden className="text-pulse">↓</span>
                   {flows[i]}
                 </span>

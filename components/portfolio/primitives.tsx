@@ -7,11 +7,11 @@ import { Reveal } from "./reveal";
 
 export const button = {
   primary:
-    "group inline-flex h-12 items-center gap-3 rounded-[2px] bg-ink px-5 text-[15px] font-medium text-canvas transition-colors duration-300 hover:bg-brand hover:text-on-brand",
+    "group inline-flex h-12 items-center gap-3 rounded-[2px] bg-ink px-5 text-[16px] font-medium text-canvas transition-colors duration-300 hover:bg-brand hover:text-on-brand",
   secondary:
-    "group inline-flex h-12 items-center gap-3 rounded-[2px] border border-rule-strong px-5 text-[15px] font-medium text-ink transition-colors duration-300 hover:border-ink",
+    "group inline-flex h-12 items-center gap-3 rounded-[2px] border border-rule-strong px-5 text-[16px] font-medium text-ink transition-colors duration-300 hover:border-ink",
   quiet:
-    "group inline-flex h-12 items-center gap-2 text-[15px] font-medium text-ink-2 transition-colors hover:text-ink",
+    "group inline-flex h-12 items-center gap-2 text-[16px] font-medium text-ink-2 transition-colors hover:text-ink",
 };
 
 /** Numbered section opener: a ruled meta line, then an editorial two-tone heading. */
@@ -73,7 +73,7 @@ export function Tag({ children, className }: { children: ReactNode; className?: 
   return (
     <span
       className={cn(
-        "inline-flex items-center border border-rule px-2 py-[3px] font-mono text-[11px] leading-none tracking-wide text-ink-3",
+        "inline-flex items-center border border-rule px-2 py-[3px] font-mono text-[12px] leading-none tracking-wide text-ink-3",
         className,
       )}
     >
@@ -97,7 +97,7 @@ export function ExternalLink({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group inline-flex items-center gap-1 text-ink-2 transition-colors hover:text-ink",
+        "group -my-1 inline-flex items-center gap-1 py-1 text-ink-2 transition-colors hover:text-ink",
         className,
       )}
     >
@@ -122,7 +122,7 @@ export function RefLinks({ ids, className }: { ids: RefId[]; className?: string 
           <Link
             key={id}
             href={ref.href}
-            className="link-draw font-mono text-[12px] text-ink-2 transition-colors hover:text-brand"
+            className="link-draw font-mono text-[13px] text-ink-2 transition-colors hover:text-brand"
           >
             {ref.label}
           </Link>
@@ -132,7 +132,7 @@ export function RefLinks({ ids, className }: { ids: RefId[]; className?: string 
             href={ref.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-draw font-mono text-[12px] text-ink-2 transition-colors hover:text-brand"
+            className="link-draw font-mono text-[13px] text-ink-2 transition-colors hover:text-brand"
           >
             {ref.label}
             <span className="sr-only"> (opens in a new tab)</span>

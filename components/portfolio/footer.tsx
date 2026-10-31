@@ -5,11 +5,11 @@ import { LocalTime } from "./local-time";
 export function Footer() {
   return (
     <footer className="border-t border-rule">
-      <div className="container-x label flex flex-col gap-4 py-8 text-ink-4 md:flex-row md:items-center md:justify-between">
+      <div className="container-x label flex flex-col gap-4 py-8 text-ink-4 lg:flex-row lg:items-center lg:justify-between">
         <p>
           © {new Date().getFullYear()} {site.name}
         </p>
-        <p className="normal-case tracking-normal">
+        <p className="normal-case tracking-normal text-ink-3">
           Designed &amp; engineered in Da Nang · Next.js, Tailwind CSS, Framer Motion
         </p>
         <div className="flex items-center gap-6">

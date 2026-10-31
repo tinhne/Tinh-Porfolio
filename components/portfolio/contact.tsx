@@ -35,7 +35,7 @@ export function Contact() {
         <div className="halo absolute -bottom-[60%] left-[20%] h-[110vmax] w-[110vmax]" />
       </div>
 
-      <div className="container-x py-28 md:py-40">
+      <div className="container-x py-24 md:py-32">
         <Reveal>
           <div className="label flex items-center gap-4 border-t border-rule pt-4">
             <span className="text-brand">§ 07</span>
@@ -73,7 +73,7 @@ export function Contact() {
               <button
                 type="button"
                 onClick={copy}
-                className="inline-flex h-11 shrink-0 items-center gap-2 rounded-[2px] border border-rule-strong px-4 text-[14px] text-ink transition-colors hover:border-ink"
+                className="inline-flex h-11 shrink-0 items-center gap-2 rounded-[2px] border border-rule-strong px-4 text-[15px] text-ink transition-colors hover:border-ink"
               >
                 {copied ? (
                   <Check className="size-4 text-pulse" aria-hidden />
@@ -102,7 +102,7 @@ export function Contact() {
               >
                 <span>
                   <span className="label block">{c.label}</span>
-                  <span className="mt-1.5 block text-[15px] text-ink transition-colors group-hover:text-brand">
+                  <span className="mt-1.5 block text-[16px] text-ink transition-colors group-hover:text-brand">
                     {c.value}
                   </span>
                 </span>

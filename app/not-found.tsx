@@ -15,7 +15,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="group mt-10 inline-flex h-12 w-fit items-center gap-3 rounded-[2px] bg-ink px-5 text-[15px] font-medium text-canvas transition-colors hover:bg-brand hover:text-on-brand"
+        className="group mt-10 inline-flex h-12 w-fit items-center gap-3 rounded-[2px] bg-ink px-5 text-[16px] font-medium text-canvas transition-colors hover:bg-brand hover:text-on-brand"
       >
         <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden />
         Back to the portfolio

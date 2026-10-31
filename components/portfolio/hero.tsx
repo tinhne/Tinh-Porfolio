@@ -66,9 +66,9 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 id="hero-title" className="mt-12 md:mt-14">
+        <h1 id="hero-title" className="mt-10 md:mt-12">
           <Line delay={0.1} className="mb-5 md:mb-8">
-            <span className="flex items-center gap-3 text-[15px] font-medium tracking-[-0.01em] text-ink md:text-lg">
+            <span className="flex items-center gap-3 text-[16px] font-medium tracking-[-0.01em] text-ink md:text-xl">
               <span aria-hidden className="h-px w-8 bg-brand" />
               {site.name}
             </span>
@@ -81,16 +81,16 @@ export function Hero() {
           </Line>
         </h1>
 
-        <div className="mt-12 grid grid-cols-1 gap-14 md:mt-14 lg:grid-cols-12 lg:gap-8">
-          <div className="flex flex-col lg:col-span-5 lg:pr-6">
+        <div className="mt-10 grid grid-cols-1 gap-14 md:mt-12 lg:grid-cols-12 lg:gap-8">
+          <div className="flex flex-col lg:col-span-6 lg:pr-4">
             <p
-              className="fade-up lead max-w-[30ch] text-ink-2"
+              className="fade-up lead max-w-[34ch] text-ink-2"
               style={{ animationDelay: "0.45s" }}
             >
               {site.statement}
             </p>
             <p
-              className="fade-up mt-5 max-w-[44ch] text-[15px] leading-relaxed text-ink-3"
+              className="fade-up mt-5 max-w-[46ch] text-[16px] leading-relaxed text-ink-3"
               style={{ animationDelay: "0.52s" }}
             >
               I focus on the parts users never see but always feel — APIs, data, background jobs —
@@ -119,11 +119,15 @@ export function Hero() {
               </a>
               <a href="#contact" className={cn(button.quiet, "px-2")}>
                 <span className="link-draw">Let&apos;s connect</span>
+                <ArrowRight
+                  className="size-4 text-ink-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-ink"
+                  aria-hidden
+                />
               </a>
             </div>
 
             <div
-              className="fade-up mt-auto hidden items-center gap-5 pt-10 text-[13px] lg:flex"
+              className="fade-up mt-auto hidden items-center gap-5 pt-10 text-[14px] lg:flex"
               style={{ animationDelay: "0.7s" }}
             >
               <a
@@ -161,7 +165,7 @@ export function Hero() {
               )}
             >
               <dt className="label text-ink-4">{item.label}</dt>
-              <dd className="mt-2 text-[15px] leading-snug text-ink">{item.value}</dd>
+              <dd className="mt-2 text-[16px] leading-snug text-ink">{item.value}</dd>
             </div>
           ))}
         </dl>

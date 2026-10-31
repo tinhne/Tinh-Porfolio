@@ -145,13 +145,13 @@ export default async function CaseStudyPage({ params }: Props) {
                 className={`py-4 pr-4 ${i % 2 === 1 ? "border-l border-rule pl-4" : ""} ${i >= 2 ? "border-t border-rule md:border-t-0" : ""} ${i === 2 ? "md:border-l md:pl-4" : ""}`}
               >
                 <dt className="label text-ink-4">{row.k}</dt>
-                <dd className="mt-1.5 text-[14.5px] leading-snug text-ink">{row.v}</dd>
+                <dd className="mt-1.5 text-[16px] leading-snug text-ink">{row.v}</dd>
               </div>
             ))}
           </dl>
 
           <div
-            className="fade-up flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-rule pt-5 text-[14px]"
+            className="fade-up flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-rule pt-5 text-[15px]"
             style={{ animationDelay: "0.4s" }}
           >
             {project.links.map((l) => (
@@ -188,9 +188,9 @@ export default async function CaseStudyPage({ params }: Props) {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="group flex items-baseline gap-3 text-[13.5px] text-ink-3 transition-colors hover:text-ink"
+                    className="group flex items-baseline gap-3 text-[15px] text-ink-3 transition-colors hover:text-ink"
                   >
-                    <span className="font-mono text-[10px] text-ink-4 group-hover:text-brand">
+                    <span className="font-mono text-[11px] text-ink-4 group-hover:text-brand">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {s.label}
@@ -222,26 +222,26 @@ export default async function CaseStudyPage({ params }: Props) {
               <div className="grid grid-cols-1 gap-px bg-rule md:grid-cols-2">
                 <div className="bg-canvas py-2 md:pr-8">
                   <p className="label text-ink-4">Problem</p>
-                  <p className="mt-3 text-[16px] leading-relaxed text-ink-2">{project.problem}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-ink-2">{project.problem}</p>
                 </div>
                 <div className="bg-canvas py-2 md:pl-8">
                   <p className="label text-pulse">Solution</p>
-                  <p className="mt-3 text-[16px] leading-relaxed text-ink-2">{project.solution}</p>
+                  <p className="mt-3 text-[17px] leading-relaxed text-ink-2">{project.solution}</p>
                 </div>
               </div>
             </Block>
 
             <Block id="role" n={3} title="My role">
-              <p className="text-[15px] text-ink-3">
+              <p className="text-[16px] text-ink-3">
                 <span className="text-ink">{project.role}.</span> What I personally implemented:
               </p>
               <ol className="mt-6 border-t border-rule">
                 {project.contributions.map((c, i) => (
                   <li
                     key={c}
-                    className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-rule py-4 text-[15px] leading-relaxed text-ink-2"
+                    className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-rule py-4 text-[16px] leading-relaxed text-ink-2"
                   >
-                    <span className="font-mono text-[11px] text-ink-4 pt-1">
+                    <span className="font-mono text-[12px] text-ink-4 pt-1">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {c}
@@ -254,7 +254,7 @@ export default async function CaseStudyPage({ params }: Props) {
               <ArchitectureDiagram architecture={project.architecture} index={project.index} />
               <ul className="mt-6 space-y-2.5">
                 {project.architecture.notes.map((note) => (
-                  <li key={note} className="flex gap-3 text-[15px] leading-relaxed text-ink-3">
+                  <li key={note} className="flex gap-3 text-[16px] leading-relaxed text-ink-3">
                     <span aria-hidden className="mt-[0.7em] h-px w-3 shrink-0 bg-brand" />
                     {note}
                   </li>
@@ -272,7 +272,7 @@ export default async function CaseStudyPage({ params }: Props) {
                     <dt className="label pt-1">{g.group}</dt>
                     <dd className="flex flex-wrap gap-1.5">
                       {g.items.map((item) => (
-                        <Tag key={item} className="text-[12px] text-ink-2">
+                        <Tag key={item} className="text-[13px] text-ink-2">
                           {item}
                         </Tag>
                       ))}
@@ -286,11 +286,11 @@ export default async function CaseStudyPage({ params }: Props) {
               <ul className="grid grid-cols-1 gap-px bg-rule sm:grid-cols-2 xl:grid-cols-3">
                 {project.features.map((f, i) => (
                   <li key={f.title} className="bg-canvas p-5 sm:p-6">
-                    <span className="font-mono text-[11px] text-brand">
+                    <span className="font-mono text-[12px] text-brand">
                       F{String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="mt-4 text-[16px] font-medium tracking-tight text-ink">{f.title}</p>
-                    <p className="mt-1.5 text-[14px] leading-relaxed text-ink-3">{f.body}</p>
+                    <p className="mt-4 text-[17px] font-medium tracking-tight text-ink">{f.title}</p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-3">{f.body}</p>
                   </li>
                 ))}
               </ul>
@@ -301,19 +301,19 @@ export default async function CaseStudyPage({ params }: Props) {
                 {project.challenges.map((c, i) => (
                   <div key={c.title} className="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-8">
                     <div className="md:col-span-4">
-                      <span className="font-mono text-[11px] text-ink-4">C{i + 1}</span>
-                      <h3 className="mt-2 text-[19px] font-medium leading-snug tracking-tight text-ink">
+                      <span className="font-mono text-[12px] text-ink-4">C{i + 1}</span>
+                      <h3 className="mt-2 text-[20px] font-medium leading-snug tracking-tight text-ink">
                         {c.title}
                       </h3>
                     </div>
                     <div className="grid grid-cols-1 gap-4 md:col-span-8 sm:grid-cols-2">
                       <div className="border-l border-rule-strong pl-4">
                         <p className="label text-ink-4">Problem</p>
-                        <p className="mt-2 text-[14.5px] leading-relaxed text-ink-3">{c.problem}</p>
+                        <p className="mt-2 text-[16px] leading-relaxed text-ink-3">{c.problem}</p>
                       </div>
                       <div className="border-l border-pulse/60 pl-4">
                         <p className="label text-pulse">Approach</p>
-                        <p className="mt-2 text-[14.5px] leading-relaxed text-ink-2">{c.approach}</p>
+                        <p className="mt-2 text-[16px] leading-relaxed text-ink-2">{c.approach}</p>
                       </div>
                     </div>
                   </div>
@@ -349,17 +349,17 @@ export default async function CaseStudyPage({ params }: Props) {
               <ul className="border-t border-rule">
                 {project.links.map((l) => (
                   <li key={l.href} className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule py-4">
-                    <ExternalLink href={l.href} className="text-[16px] text-ink">
+                    <ExternalLink href={l.href} className="text-[17px] text-ink">
                       {l.label}
                     </ExternalLink>
-                    <span className="font-mono text-[12px] text-ink-4">
+                    <span className="font-mono text-[13px] text-ink-4">
                       {l.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                     </span>
                   </li>
                 ))}
               </ul>
               {project.linksNote && (
-                <p className="mt-4 text-[14px] text-ink-4">{project.linksNote}</p>
+                <p className="mt-4 text-[15px] text-ink-4">{project.linksNote}</p>
               )}
             </Block>
           </article>
@@ -380,7 +380,7 @@ export default async function CaseStudyPage({ params }: Props) {
               className="size-8 shrink-0 text-ink-4 transition-transform duration-500 ease-out-expo group-hover:translate-x-2 group-hover:text-brand md:size-12"
             />
           </span>
-          <span className="mt-3 block max-w-[52ch] text-[15px] text-ink-3">{next.tagline}</span>
+          <span className="mt-3 block max-w-[52ch] text-[16px] text-ink-3">{next.tagline}</span>
         </Link>
       </div>
     </main>

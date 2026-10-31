@@ -69,10 +69,10 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
             {project.title}
           </Link>
         </h3>
-        <p className="mt-4 text-lg leading-snug tracking-[-0.01em] text-ink-2">{project.tagline}</p>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-3">{project.summary}</p>
+        <p className="mt-4 text-xl leading-snug tracking-[-0.01em] text-ink-2">{project.tagline}</p>
+        <p className="mt-3 text-[16px] leading-relaxed text-ink-3">{project.summary}</p>
 
-        <dl className="mt-8 border-t border-rule text-[14px]">
+        <dl className="mt-8 border-t border-rule text-[15px]">
           {[
             { k: "Role", v: project.role },
             { k: "Focus", v: project.focus },
@@ -92,7 +92,7 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
           </div>
         </dl>
 
-        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]">
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
           <Link
             href={href}
             className="group inline-flex h-10 items-center gap-2 rounded-[2px] bg-ink px-4 font-medium text-canvas transition-colors hover:bg-brand hover:text-on-brand"
@@ -118,7 +118,7 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
 
 export function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-28 md:py-40">
+    <section id="projects" aria-labelledby="projects-title" className="py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
           id="projects-title"
@@ -150,19 +150,19 @@ export function Projects() {
                 delay={i * 0.04}
                 className="group grid grid-cols-1 gap-3 border-b border-rule py-6 transition-colors hover:bg-panel/40 md:grid-cols-12 md:gap-6 md:px-3"
               >
-                <span className="font-mono text-[12px] text-ink-4 md:col-span-1 md:pt-1">
+                <span className="font-mono text-[13px] text-ink-4 md:col-span-1 md:pt-1">
                   {item.year}
                 </span>
                 <div className="md:col-span-6">
-                  <p className="text-[17px] font-medium tracking-tight text-ink">{item.title}</p>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-ink-3">{item.description}</p>
+                  <p className="text-[18px] font-medium tracking-tight text-ink">{item.title}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-3">{item.description}</p>
                 </div>
                 <div className="flex flex-wrap content-start gap-1.5 md:col-span-3 md:pt-1">
                   {item.stack.map((s) => (
                     <Tag key={s}>{s}</Tag>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-x-5 gap-y-1 text-[14px] md:col-span-2 md:justify-end md:pt-0.5">
+                <div className="flex flex-wrap gap-x-5 gap-y-1 text-[15px] md:col-span-2 md:justify-end md:pt-0.5">
                   {item.links.map((l) => (
                     <ExternalLink key={l.href} href={l.href}>
                       {l.label}

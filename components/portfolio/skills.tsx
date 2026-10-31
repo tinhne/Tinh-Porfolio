@@ -37,7 +37,7 @@ function Readout({ skill, compact }: { skill: Skill | null; compact?: boolean })
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-[15px] leading-relaxed text-ink-3"
+            className="text-[16px] leading-relaxed text-ink-3"
           >
             Hover, focus or tap any tool. You&apos;ll see the projects and roles where I actually
             used it — and related tools light up.
@@ -63,7 +63,7 @@ export function Skills() {
   }, [active]);
 
   return (
-    <section id="skills" aria-labelledby="skills-title" className="py-28 md:py-40">
+    <section id="skills" aria-labelledby="skills-title" className="py-24 md:py-32">
       <div className="container-x">
         <SectionHeader
           id="skills-title"
@@ -113,7 +113,7 @@ export function Skills() {
                               onFocus={() => setActive(skill)}
                               onClick={() => setActive(isActive ? null : skill)}
                               className={cn(
-                                "rounded-[2px] border px-3 py-1.5 text-[14px] transition-[color,background-color,border-color,opacity] duration-200",
+                                "rounded-[2px] border px-3.5 py-2 text-[15px] transition-[color,background-color,border-color,opacity] duration-200",
                                 isActive
                                   ? "border-ink bg-ink text-canvas"
                                   : isRelated
@@ -137,7 +137,7 @@ export function Skills() {
                 </Reveal>
               );
             })}
-            <p className="border-t border-rule pt-5 text-[13.5px] leading-relaxed text-ink-4">
+            <p className="border-t border-rule pt-5 text-[15px] leading-relaxed text-ink-4">
               Listed tools are ones I&apos;ve used in professional work or shipped personal projects.
               Things I&apos;m only learning live under{" "}
               <a href="#about" className="link-draw text-ink-3 hover:text-ink">

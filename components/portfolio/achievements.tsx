@@ -9,7 +9,7 @@ export function Achievements() {
     <section
       id="recognition"
       aria-labelledby="recognition-title"
-      className="border-t border-rule bg-canvas-2/50 py-28 md:py-40"
+      className="border-t border-rule bg-canvas-2/50 py-24 md:py-32"
     >
       <div className="container-x">
         <SectionHeader
@@ -37,7 +37,7 @@ export function Achievements() {
               <h3 className="mt-6 text-2xl font-medium tracking-[-0.025em] text-ink md:text-[1.75rem]">
                 {education.school}
               </h3>
-              <p className="mt-1.5 text-[15px] text-ink-2">{education.degree}</p>
+              <p className="mt-1.5 text-[16px] text-ink-2">{education.degree}</p>
               <p className="label mt-auto pt-8 text-ink-4">
                 {education.period} · {education.location}
               </p>
@@ -54,16 +54,16 @@ export function Achievements() {
               >
                 <span className="label text-ink-4">{item.kind}</span>
                 <div>
-                  <p className="text-[17px] font-medium tracking-tight text-ink">
+                  <p className="text-[18px] font-medium tracking-tight text-ink">
                     {item.title}
                     <span className="font-normal text-ink-3"> — {item.org}</span>
                   </p>
-                  <p className="mt-1 text-[14.5px] text-ink-2">
+                  <p className="mt-1 text-[16px] text-ink-2">
                     {item.result}
                     {item.date && <span className="text-ink-4"> · {item.date}</span>}
                   </p>
                 </div>
-                <span className="text-[14px] sm:text-right">
+                <span className="text-[15px] sm:text-right">
                   {item.link && <ExternalLink href={item.link.href}>{item.link.label}</ExternalLink>}
                 </span>
               </Reveal>

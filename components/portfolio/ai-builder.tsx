@@ -8,10 +8,10 @@ function Lane({ who }: { who: "me" | "agent" }) {
   return (
     <>
       <div className="flex flex-col justify-center border-r border-rule py-6 pr-4">
-        <p className={cn("font-mono text-[11px] uppercase tracking-[0.14em]", who === "me" ? "text-brand" : "text-pulse")}>
+        <p className={cn("font-mono text-[12px] uppercase tracking-[0.14em]", who === "me" ? "text-brand" : "text-pulse")}>
           {who === "me" ? "Me" : "AI agent"}
         </p>
-        <p className="mt-1 text-[12.5px] leading-snug text-ink-4">
+        <p className="mt-1 text-[13.5px] leading-snug text-ink-4">
           {who === "me" ? "Owns decisions & quality" : "Accelerates execution"}
         </p>
       </div>
@@ -43,7 +43,7 @@ function Lane({ who }: { who: "me" | "agent" }) {
               {text ? (
                 <div
                   className={cn(
-                    "relative z-10 w-full border bg-canvas p-3 text-[13px] leading-snug text-ink-2",
+                    "relative z-10 w-full border bg-canvas p-2.5 text-[13px] leading-snug text-ink-2 hyphens-auto xl:p-3 xl:text-[14px]",
                     who === "me" ? "border-brand/40" : "border-pulse/40",
                   )}
                 >
@@ -71,7 +71,7 @@ export function AiBuilder() {
     <section
       id="ai"
       aria-labelledby="ai-title"
-      className="relative isolate overflow-hidden border-y border-rule bg-canvas-2/70 py-28 md:py-40"
+      className="relative isolate overflow-hidden border-y border-rule bg-canvas-2/70 py-24 md:py-32"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="halo absolute -left-[30%] top-[10%] h-[90vmax] w-[90vmax] opacity-70" />
@@ -96,7 +96,7 @@ export function AiBuilder() {
         />
 
         <Reveal delay={0.1}>
-          <p className="mt-8 max-w-[62ch] border-l border-pulse/60 pl-4 text-[14.5px] leading-relaxed text-ink-3">
+          <p className="mt-8 max-w-[62ch] border-l border-pulse/60 pl-4 text-[16px] leading-relaxed text-ink-3">
             To be precise about it: I&apos;m an application engineer, not an ML researcher. I
             don&apos;t train models — I build reliable software around them.
           </p>
@@ -115,12 +115,12 @@ export function AiBuilder() {
 
             {/* desktop swimlane */}
             <div className="hidden px-5 pb-2 md:block">
-              <div className="grid grid-cols-[9rem_repeat(6,minmax(0,1fr))]">
+              <div className="grid grid-cols-[7.5rem_repeat(6,minmax(0,1fr))] xl:grid-cols-[9rem_repeat(6,minmax(0,1fr))]">
                 <div />
                 {aiWorkflow.map((step, i) => (
                   <div key={step.step} className="px-2 pb-1 pt-5 lg:px-3">
-                    <span className="font-mono text-[11px] text-ink-4">0{i + 1}</span>
-                    <p className="text-[15px] font-medium tracking-tight text-ink">{step.step}</p>
+                    <span className="font-mono text-[12px] text-ink-4">0{i + 1}</span>
+                    <p className="text-[16px] font-medium tracking-tight text-ink">{step.step}</p>
                   </div>
                 ))}
                 <Lane who="me" />
@@ -134,19 +134,19 @@ export function AiBuilder() {
               {aiWorkflow.map((step, i) => (
                 <li key={step.step} className="px-4 py-4">
                   <p className="flex items-baseline gap-3">
-                    <span className="font-mono text-[11px] text-ink-4">0{i + 1}</span>
-                    <span className="text-[16px] font-medium text-ink">{step.step}</span>
+                    <span className="font-mono text-[12px] text-ink-4">0{i + 1}</span>
+                    <span className="text-[17px] font-medium text-ink">{step.step}</span>
                   </p>
-                  <dl className="mt-2 space-y-1.5 pl-7 text-[14px] leading-snug">
+                  <dl className="mt-2 space-y-1.5 pl-7 text-[15px] leading-snug">
                     {step.me && (
                       <div className="flex gap-2">
-                        <dt className="w-12 shrink-0 font-mono text-[11px] uppercase text-brand">Me</dt>
+                        <dt className="w-12 shrink-0 font-mono text-[12px] uppercase text-brand">Me</dt>
                         <dd className="text-ink-2">{step.me}</dd>
                       </div>
                     )}
                     {step.agent && (
                       <div className="flex gap-2">
-                        <dt className="w-12 shrink-0 font-mono text-[11px] uppercase text-pulse">Agent</dt>
+                        <dt className="w-12 shrink-0 font-mono text-[12px] uppercase text-pulse">Agent</dt>
                         <dd className="text-ink-2">{step.agent}</dd>
                       </div>
                     )}
@@ -165,7 +165,7 @@ export function AiBuilder() {
               </h3>
               <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Evidence legend">
                 {legend.map((kind) => (
-                  <li key={kind} className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-3">
+                  <li key={kind} className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.1em] text-ink-3">
                     <EvidenceMark kind={kind} />
                     {evidenceLabels[kind]}
                   </li>
