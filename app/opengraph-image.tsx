@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 export default function OpengraphImage() {
   return renderOgImage({
-    kicker: "Portfolio — Da Nang, Vietnam",
+    kicker: "Portfolio — Hanoi, Vietnam",
     title: "Le Van Trung Tinh",
     subtitle: "Software Engineer · AI Product Builder",
     footer: "Full-stack applications & AI-powered products",

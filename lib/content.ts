@@ -14,8 +14,9 @@ export const site = {
   statement:
     "Building full-stack applications, AI-powered products, and practical software solutions.",
   url: "https://trungtinh.site",
-  location: "Da Nang, Vietnam",
-  coords: "16.05°N 108.20°E",
+  city: "Hanoi",
+  location: "Hanoi, Vietnam",
+  coords: "21.03°N 105.85°E",
   timezone: "Asia/Ho_Chi_Minh",
   // CONFIRM: the latest CV prints levantrungtinh@gmail.com, but the site, the
   // older CV's mailto link and the git author all use this address.
@@ -25,8 +26,8 @@ export const site = {
     "https://www.linkedin.com/in/trung-t%C3%ADnh-l%C3%AA-v%C4%83n-b72669297/",
   resume: "/LeVanTrungTinh_CV.pdf",
   resumeFileName: "LeVanTrungTinh_CV.pdf",
-  // Shown in the hero only when set. Leave null unless it is currently true.
-  availability: null as string | null,
+  // Shown in the hero only when set. Set to null once no longer looking.
+  availability: "Open to roles · Hanoi or remote" as string | null,
 } as const;
 
 export const navItems = [
@@ -81,11 +82,11 @@ export const refs: Record<RefId, { label: string; href: string }> = {
 export const about = {
   heading: "Engineering ideas into real products.",
   paragraphs: [
-    "I'm Tinh, a software engineer from Da Nang. I studied Information Technology at Duy Tan University, interned on production backend services at Tomosia, and now work on product engineering at Margick, a startup building a SaaS website builder.",
+    "I'm Tinh, a software engineer based in Hanoi. I studied Information Technology at Duy Tan University in Da Nang, interned on production backend services at Tomosia, and now work on product engineering at Margick, a startup building a SaaS website builder.",
     "Most of my work sits where backend systems meet the product: APIs, data models, background jobs, and the interface that makes them useful. Lately that includes AI — putting models like Gemini and OpenAI behind real features, and using coding agents to move faster without lowering the bar on review and testing.",
   ],
   facts: [
-    { label: "Based in", value: "Da Nang, Vietnam · GMT+7" },
+    { label: "Based in", value: "Hanoi, Vietnam · GMT+7" },
     { label: "Education", value: "B.IT, Duy Tan University, 2025" },
     { label: "Builds with", value: "TypeScript, Java, PostgreSQL" },
     { label: "AI in use", value: "Gemini, OpenAI, Claude Code" },

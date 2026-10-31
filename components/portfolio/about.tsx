@@ -11,7 +11,6 @@ export function About() {
           id="about-title"
           index="01"
           label="About"
-          aside="Profile"
           title="Engineering ideas"
           muted="into real products."
         />

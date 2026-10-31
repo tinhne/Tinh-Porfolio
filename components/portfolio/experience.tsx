@@ -15,7 +15,6 @@ export function Experience() {
           id="experience-title"
           index="02"
           label="Experience"
-          aside={`${experience.length} roles · newest first`}
           title="Where I've done the work."
           muted="Real teams, real codebases."
         />

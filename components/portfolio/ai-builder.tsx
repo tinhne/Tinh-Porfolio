@@ -82,7 +82,6 @@ export function AiBuilder() {
           id="ai-title"
           index="04"
           label="AI & Product Building"
-          aside="Tools are not titles"
           title="Building with AI."
           muted="Engineering beyond prompts."
           intro={

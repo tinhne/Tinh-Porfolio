@@ -16,7 +16,6 @@ export function Achievements() {
           id="recognition-title"
           index="06"
           label="Achievements & Education"
-          aside="Only items with evidence"
           title="Milestones."
           muted="Competitions, certificates and the degree behind them."
         />

@@ -20,7 +20,7 @@ export function LocalTime({ className }: { className?: string }) {
 
   return (
     <span className={className}>
-      Da Nang <span className="tabular-nums text-ink-2">{time ?? "--:--"}</span> GMT+7
+      {site.city} <span className="tabular-nums text-ink-2">{time ?? "--:--"}</span> GMT+7
     </span>
   );
 }

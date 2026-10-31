@@ -18,7 +18,6 @@ export const button = {
 export function SectionHeader({
   index,
   label,
-  aside,
   title,
   muted,
   intro,
@@ -26,7 +25,6 @@ export function SectionHeader({
 }: {
   index: string;
   label: string;
-  aside?: string;
   title: ReactNode;
   muted?: ReactNode;
   intro?: ReactNode;
@@ -38,7 +36,6 @@ export function SectionHeader({
         <div className="label flex items-center gap-4 border-t border-rule pt-4">
           <span className="text-brand">§ {index}</span>
           <span>{label}</span>
-          {aside && <span className="ml-auto hidden text-ink-4 sm:block">{aside}</span>}
         </div>
       </Reveal>
       <Reveal delay={0.05}>

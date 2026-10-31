@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 import { RefLinks, SectionHeader } from "./primitives";
 
-const totalSkills = skillGroups.reduce((n, g) => n + g.skills.length, 0);
-
 function Readout({ skill, compact }: { skill: Skill | null; compact?: boolean }) {
   return (
     <div aria-live="polite" className={cn(compact ? "pt-4" : "")}>
@@ -69,7 +67,6 @@ export function Skills() {
           id="skills-title"
           index="05"
           label="Skills"
-          aside="No percentage bars"
           title="Tools I've shipped with."
           muted="Each one traced back to real work."
         />
@@ -78,7 +75,7 @@ export function Skills() {
           <Reveal className="hidden lg:col-span-4 lg:block">
             <div className="sticky top-28 border-t border-rule pt-5">
               <p className="label mb-5">
-                <span className="text-brand">Readout</span> · {totalSkills} tools
+                <span className="text-brand">Where I used it</span>
               </p>
               <div className="min-h-[12rem]">
                 <Readout skill={active} />

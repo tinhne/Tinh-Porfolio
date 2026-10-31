@@ -87,7 +87,6 @@ export function SystemMap() {
           <span>
             <span className="text-brand">fig. 01</span> — System map
           </span>
-          <span className="hidden text-ink-4 sm:inline">scale 1:1 · live wiring</span>
         </div>
 
         <div className="relative w-full" style={{ aspectRatio: `${W} / ${H}` }}>
@@ -211,7 +210,7 @@ export function SystemMap() {
           className="mt-3 flex min-h-[3.5rem] items-start gap-3 border-t border-rule pt-3 sm:mt-4"
         >
           <span className="label shrink-0 pt-px text-brand">
-            {active ? `N.0${activeIndex + 1}` : "Read"}
+            {active ? `N.0${activeIndex + 1}` : "Tip"}
           </span>
           {active ? (
             <span className="text-[14px] leading-relaxed text-ink-3 sm:text-[15px]">

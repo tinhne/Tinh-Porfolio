@@ -124,7 +124,6 @@ export function Projects() {
           id="projects-title"
           index="03"
           label="Projects"
-          aside={`${projects.length} case studies · ${archive.length} in the archive`}
           title="Selected work."
           muted="Explained end to end."
         />
