@@ -10,7 +10,7 @@ export function Footer() {
           © {new Date().getFullYear()} {site.name}
         </p>
         <p className="normal-case tracking-normal text-ink-3">
-          Designed &amp; engineered in Da Nang · Next.js, Tailwind CSS, Framer Motion
+          Designed &amp; engineered in {site.city} · Next.js, Tailwind CSS, Framer Motion
         </p>
         <div className="flex items-center gap-6">
           <LocalTime />

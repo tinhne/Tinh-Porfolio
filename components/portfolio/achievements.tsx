@@ -1,6 +1,7 @@
 import { achievements, education } from "@/lib/content";
 import { Reveal } from "./reveal";
-import { ExternalLink, RegMarks, SectionHeader } from "./primitives";
+import { ExternalLink, RegMarks } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 export function Achievements() {
   const items = achievements.filter((a) => a.confirmed);
@@ -16,7 +17,6 @@ export function Achievements() {
           id="recognition-title"
           index="06"
           label="Achievements & Education"
-          aside="Only items with evidence"
           title="Milestones."
           muted="Competitions, certificates and the degree behind them."
         />

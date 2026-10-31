@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { refs, type Evidence, type RefId } from "@/lib/content";
-import { Reveal } from "./reveal";
 
 export const button = {
   primary:
@@ -13,48 +12,6 @@ export const button = {
   quiet:
     "group inline-flex h-12 items-center gap-2 text-[16px] font-medium text-ink-2 transition-colors hover:text-ink",
 };
-
-/** Numbered section opener: a ruled meta line, then an editorial two-tone heading. */
-export function SectionHeader({
-  index,
-  label,
-  aside,
-  title,
-  muted,
-  intro,
-  id,
-}: {
-  index: string;
-  label: string;
-  aside?: string;
-  title: ReactNode;
-  muted?: ReactNode;
-  intro?: ReactNode;
-  id: string;
-}) {
-  return (
-    <header>
-      <Reveal>
-        <div className="label flex items-center gap-4 border-t border-rule pt-4">
-          <span className="text-brand">§ {index}</span>
-          <span>{label}</span>
-          {aside && <span className="ml-auto hidden text-ink-4 sm:block">{aside}</span>}
-        </div>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <h2 id={id} className="heading mt-10 max-w-[20ch] text-ink md:mt-14">
-          {title}
-          {muted && <span className="text-ink-4"> {muted}</span>}
-        </h2>
-      </Reveal>
-      {intro && (
-        <Reveal delay={0.1}>
-          <div className="lead mt-6 max-w-[58ch] text-ink-3">{intro}</div>
-        </Reveal>
-      )}
-    </header>
-  );
-}
 
 /** Registration marks at the four corners of a figure. */
 export function RegMarks({ className }: { className?: string }) {

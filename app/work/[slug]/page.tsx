@@ -369,6 +369,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <Link
           href={`/work/${next.slug}`}
           className="group mt-8 block border-t border-rule py-14 md:py-20"
+          data-cursor="Next"
         >
           <span className="label">
             Next case study <span className="text-ink-4">/ P—{next.index}</span>

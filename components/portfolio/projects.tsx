@@ -4,7 +4,8 @@ import { archive, projects, type Project } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 import { ParallaxImage } from "./parallax-image";
-import { ExternalLink, RegMarks, SectionHeader, Tag } from "./primitives";
+import { ExternalLink, RegMarks, Tag } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 export function ProjectStatus({ status }: { status: Project["status"] }) {
   return (
@@ -31,6 +32,7 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
           href={href}
           className="group relative block border border-rule bg-panel"
           aria-label={`Read the ${project.title} case study`}
+          data-cursor="View"
         >
           <RegMarks />
           <div className="relative aspect-[16/10] overflow-hidden">
@@ -124,7 +126,6 @@ export function Projects() {
           id="projects-title"
           index="03"
           label="Projects"
-          aside={`${projects.length} case studies · ${archive.length} in the archive`}
           title="Selected work."
           muted="Explained end to end."
         />

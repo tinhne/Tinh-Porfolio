@@ -5,15 +5,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ArrowDown, Menu, X } from "lucide-react";
-import { navItems, site } from "@/lib/content";
+import { sections, site } from "@/lib/content";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LocalTime } from "./local-time";
+import { useActiveSection } from "./use-active-section";
 import { cn } from "@/lib/utils";
 
 export function Nav() {
   const pathname = usePathname();
   const onHome = pathname === "/";
-  const [active, setActive] = useState<string>("home");
+  const active = useActiveSection(onHome);
+  const current = onHome ? sections.find((s) => s.id === active) : undefined;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -28,24 +30,6 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Track which section sits in the middle band of the viewport.
-  useEffect(() => {
-    if (!onHome) return;
-    const sections = navItems
-      .map((item) => document.getElementById(item.id))
-      .filter((el): el is HTMLElement => el !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-42% 0px -54% 0px" },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [onHome]);
 
   useEffect(() => {
     if (!open) return;
@@ -77,49 +61,69 @@ export function Nav() {
         )}
       >
         <nav aria-label="Primary" className="container-x flex h-16 items-center gap-6">
-          <Link
-            href={onHome ? "#home" : "/"}
-            className="group mr-auto flex items-center gap-2.5 text-[16px] font-medium tracking-tight text-ink"
-            onClick={() => setOpen(false)}
-          >
-            <span
-              aria-hidden
-              className="grid size-6 place-items-center border border-rule-strong font-mono text-[11px] text-ink-2 transition-colors group-hover:border-brand group-hover:text-brand"
+          <div className="mr-auto flex min-w-0 items-center gap-3">
+            <Link
+              href={onHome ? "#home" : "/"}
+              className="group flex shrink-0 items-center gap-2.5 text-[16px] font-medium tracking-tight text-ink"
+              onClick={() => setOpen(false)}
             >
-              T
-            </span>
-            {site.shortName}
-            <span className="sr-only">— home</span>
-          </Link>
+              <span
+                aria-hidden
+                className="grid size-6 place-items-center border border-rule-strong font-mono text-[11px] text-ink-2 transition-colors group-hover:border-brand group-hover:text-brand"
+              >
+                T
+              </span>
+              {/* On phones the section name needs the room; the "T" mark still links home */}
+              <span className={cn(current && !open && "max-sm:sr-only")}>{site.shortName}</span>
+              <span className="sr-only">— home</span>
+            </Link>
+
+            {/* Small screens have no visible nav links, so name the section being read */}
+            <AnimatePresence mode="wait" initial={false}>
+              {current && !open && (
+                <motion.span
+                  key={current.id}
+                  aria-hidden
+                  className="flex min-w-0 items-center gap-3 lg:hidden"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <span className="h-4 w-px bg-rule-strong" />
+                  <span className="truncate font-mono text-[12px] uppercase tracking-[0.1em] text-ink-2">
+                    <span className="text-brand">{current.index}</span> {current.label}
+                  </span>
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
 
           <ul className="hidden items-center lg:flex">
-            {navItems
-              .filter((item) => item.id !== "home")
-              .map((item, i) => {
-                const isActive = onHome && active === item.id;
-                return (
-                  <li key={item.id}>
-                    <a
-                      href={href(item.id)}
-                      aria-current={isActive ? "location" : undefined}
-                      className={cn(
-                        "relative flex items-baseline gap-1.5 px-3 py-2 text-[14px] transition-colors",
-                        isActive ? "text-ink" : "text-ink-3 hover:text-ink",
-                      )}
-                    >
-                      <span className="font-mono text-[11px] text-ink-4">0{i + 1}</span>
-                      {item.label}
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-indicator"
-                          className="absolute inset-x-3 -bottom-[13px] h-px bg-brand"
-                          transition={{ type: "spring", stiffness: 380, damping: 34 }}
-                        />
-                      )}
-                    </a>
-                  </li>
-                );
-              })}
+            {sections.map((item) => {
+              const isActive = onHome && active === item.id;
+              return (
+                <li key={item.id}>
+                  <a
+                    href={href(item.id)}
+                    aria-current={isActive ? "location" : undefined}
+                    className={cn(
+                      "relative flex px-2.5 py-2 text-[14px] transition-colors xl:px-3",
+                      isActive ? "text-ink" : "text-ink-3 hover:text-ink",
+                    )}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-indicator"
+                        className="absolute inset-x-2.5 -bottom-[13px] h-px bg-brand xl:inset-x-3"
+                        transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                      />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="flex items-center gap-2.5">
@@ -167,7 +171,7 @@ export function Nav() {
           >
             <div className="container-x flex min-h-full flex-col py-8">
               <ul className="border-t border-rule">
-                {navItems.map((item, i) => (
+                {[{ id: "home", label: "Home", index: "00" }, ...sections].map((item, i) => (
                   <motion.li
                     key={item.id}
                     initial={{ opacity: 0, y: 12 }}
@@ -179,10 +183,10 @@ export function Nav() {
                       ref={i === 0 ? firstLink : undefined}
                       href={href(item.id)}
                       onClick={() => setOpen(false)}
-                      className="flex items-baseline gap-4 py-4 text-[2rem] font-medium leading-none tracking-[-0.03em] text-ink"
+                      className="flex items-baseline gap-4 py-3.5 text-[1.875rem] font-medium leading-none tracking-[-0.03em] text-ink"
                     >
-                      <span className="font-mono text-[12px] tracking-normal text-brand">
-                        0{i}
+                      <span className="w-6 font-mono text-[12px] tracking-normal text-brand">
+                        {item.index}
                       </span>
                       {item.label}
                     </a>

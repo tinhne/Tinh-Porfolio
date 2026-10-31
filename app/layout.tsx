@@ -5,6 +5,8 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Nav } from "@/components/portfolio/nav";
 import { Footer } from "@/components/portfolio/footer";
+import { SectionRail } from "@/components/portfolio/section-rail";
+import { Cursor } from "@/components/portfolio/cursor";
 import { site } from "@/lib/content";
 
 const geist = Geist({
@@ -20,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Le Van Trung Tinh (Trung Tinh) is a software engineer in Da Nang, Vietnam, building full-stack applications and AI-powered products with TypeScript, Java, Spring Boot, Next.js and PostgreSQL.";
+  "Le Van Trung Tinh (Trung Tinh) is a software engineer in Hanoi, Vietnam, building full-stack applications and AI-powered products with TypeScript, Java, Spring Boot, Next.js and PostgreSQL.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -41,7 +43,8 @@ export const metadata: Metadata = {
     "Next.js",
     "TypeScript",
     "Java Spring Boot",
-    "Da Nang",
+    "Hanoi",
+    "Software Engineer Hanoi",
   ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
@@ -82,7 +85,7 @@ const personJsonLd = {
   url: site.url,
   jobTitle: "Software Engineer",
   description,
-  address: { "@type": "PostalAddress", addressLocality: "Da Nang", addressCountry: "VN" },
+  address: { "@type": "PostalAddress", addressLocality: "Hanoi", addressCountry: "VN" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Duy Tan University" },
   knowsAbout: [
     "Full-stack development",
@@ -118,8 +121,10 @@ export default function RootLayout({
         </a>
         <Providers>
           <Nav />
+          <SectionRail />
           {children}
           <Footer />
+          <Cursor />
         </Providers>
         <Analytics />
       </body>

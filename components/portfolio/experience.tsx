@@ -1,7 +1,8 @@
 import { experience } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
-import { ExternalLink, SectionHeader, Tag } from "./primitives";
+import { ExternalLink, Tag } from "./primitives";
+import { SectionHeader } from "./section-header";
 
 export function Experience() {
   return (
@@ -15,7 +16,6 @@ export function Experience() {
           id="experience-title"
           index="02"
           label="Experience"
-          aside={`${experience.length} roles · newest first`}
           title="Where I've done the work."
           muted="Real teams, real codebases."
         />
