@@ -1,6 +1,6 @@
 # Trung Tinh — Personal Portfolio
 
-Source code for [trungtinh.site](https://trungtinh.site), the personal portfolio of Lê Văn Trung Tính. It is a single-page Next.js site that presents selected projects, technical skills, and work experience, with a downloadable CV.
+Source code for [trungtinh.site](https://trungtinh.site), the portfolio of Lê Văn Trung Tính, Software Engineer · AI Product Builder. It is a statically generated Next.js site with a home page covering experience, projects, AI work, skills, and achievements, plus a long-form case study page for each featured project.
 
 [![Live site](https://img.shields.io/badge/live-trungtinh.site-5b5bd6?style=flat-square)](https://trungtinh.site)
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs)
@@ -10,42 +10,54 @@ Source code for [trungtinh.site](https://trungtinh.site), the personal portfolio
 
 ## Key features
 
-- **Single-page layout** with anchored sections — Hero, Projects, Skills, Experience — and a sticky section navigator (`components/portfolio/section-nav.tsx`).
-- **Project case studies.** Each project row opens an accessible modal (`role="dialog"`, `aria-modal`) with the challenge, solution, features, stack, and links (`components/portfolio/projects.tsx`).
-- **Light and dark themes** via `next-themes`, with a floating toggle (`components/theme-toggle.tsx`).
-- **One-click contact.** "Copy email" uses the Clipboard API; the CV is served as a static PDF from `public/`.
-- **Search-engine ready.** App Router metadata, Open Graph tags, JSON-LD `Person` schema, `sitemap.ts`, and `robots.ts`.
-- **Motion with restraint.** Entrance and in-view transitions with Framer Motion.
+- **Content as data.** Everything shown on the site — profile, experience, projects, case studies, skills, achievements — lives in typed objects in `lib/content.ts`. Updating the portfolio is a data edit, not a layout change.
+- **Home page sections:** Hero with an animated system map, About, Experience, Projects (featured case studies plus an archive list), AI & Product, Skills, Achievements, and Contact (`app/page.tsx`, `components/portfolio/`).
+- **Case study pages.** `/work/[slug]` is statically generated for every featured project with `generateStaticParams`, and includes role, stack, features, challenges, an architecture diagram, and screenshots.
+- **Evidence-linked skills.** Skills and AI capabilities reference the projects or roles where they were actually used, so each claim links to its proof.
+- **Generated social images.** Open Graph images for the home page and each case study are rendered at build time with `next/og` (`app/opengraph-image.tsx`, `app/work/[slug]/opengraph-image.tsx`, `lib/og.tsx`).
+- **SEO.** App Router metadata, per-page canonical URLs, JSON-LD `Person` schema, `sitemap.ts`, and `robots.ts`.
+- **Accessible navigation.** Sticky nav with active-section state (`aria-current`), a mobile menu that closes on Escape, and a custom 404 page.
+- **Motion that respects the user.** Scroll reveals, parallax and scroll-linked text use Framer Motion with `reducedMotion="user"`, and CSS animations are gated behind `prefers-reduced-motion`.
+- **Dark-first theming** with a light-mode toggle (`next-themes`).
 - **Vercel Analytics** for page-view tracking.
+
+![Meet.AI case study page](docs/screenshots/case-study.webp)
 
 ## Tech stack
 
 | Layer | Technology |
 | --- | --- |
-| Framework | Next.js 16 (App Router), React 19 |
-| Language | TypeScript 5 |
+| Framework | Next.js 16 (App Router, static generation), React 19 |
+| Language | TypeScript 5 (type-checked during `next build`) |
 | Styling | Tailwind CSS 4, CSS variables, shadcn/ui (Radix primitives) |
 | Motion | Framer Motion 12 |
-| Fonts | Space Grotesk, JetBrains Mono, Playfair Display (`next/font/google`) |
-| Hosting | Vercel (custom domain `trungtinh.site`) |
+| Fonts | Geist and Geist Mono (`next/font/google`) |
+| Social images | `next/og` (`ImageResponse`) |
+| Hosting | Vercel, custom domain `trungtinh.site` |
 
 ## Project structure
 
 ```text
 app/
-  layout.tsx          Root layout: fonts, metadata, JSON-LD, theme provider, analytics
-  page.tsx            Composes the portfolio sections
-  sitemap.ts          Generated sitemap
-  robots.ts           Crawl rules
+  layout.tsx                 Root layout: fonts, metadata, JSON-LD, providers, analytics
+  page.tsx                   Home page — composes the portfolio sections
+  work/[slug]/page.tsx       Case study page per featured project
+  opengraph-image.tsx        Generated OG image (home); one per case study under work/[slug]/
+  template.tsx               Page fade-in on route change
+  not-found.tsx, sitemap.ts, robots.ts
 components/
-  portfolio/          Page sections: hero, projects, skills, experience, footer, section-nav
-  ui/                 shadcn/ui primitives
-  theme-provider.tsx  next-themes wrapper
-  theme-toggle.tsx    Light/dark switch
-public/               CV (PDF), project screenshots, icons
+  portfolio/                 Sections (hero, about, experience, projects, ai-builder, skills,
+                             achievements, contact) and building blocks (nav, system-map,
+                             architecture-diagram, reveal, parallax-image, primitives)
+  providers.tsx              Theme + motion configuration
+  ui/                        shadcn/ui primitives
+lib/
+  content.ts                 Single source of truth for all site content
+  og.tsx                     Shared Open Graph image renderer
+public/
+  projects/                  Project screenshots (WebP)
+  LeVanTrungTinh_CV.pdf      Downloadable resume
 ```
-
-Content (projects, skills, experience) lives as typed arrays at the top of each section component, so updating the site is a data edit rather than a layout change.
 
 ## Getting started
 
@@ -63,10 +75,14 @@ Open <http://localhost:3000>.
 | Command | Description |
 | --- | --- |
 | `pnpm dev` | Start the development server |
-| `pnpm build` | Create a production build |
+| `pnpm build` | Type-check and create a production build (all pages prerendered) |
 | `pnpm start` | Serve the production build |
 
 No environment variables are required.
+
+### Editing content
+
+Edit `lib/content.ts`. To add a case study, append an entry to `projects` with a unique `slug` and put its screenshots in `public/projects/`. The page, its Open Graph image, and its sitemap entry are generated automatically.
 
 ## Deployment
 
