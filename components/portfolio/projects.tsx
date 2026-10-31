@@ -1,524 +1,179 @@
-"use client";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { archive, projects, type Project } from "@/lib/content";
+import { cn } from "@/lib/utils";
+import { Reveal } from "./reveal";
+import { ParallaxImage } from "./parallax-image";
+import { ExternalLink, RegMarks, SectionHeader, Tag } from "./primitives";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  challenge: string;
-  solution: string;
-  image: string;
-  tech: string[];
-  /** Recruiter-facing: Backend, Full-Stack, AI/ML, Desktop */
-  roleTags: string[];
-  features: string[];
-  github?: string;
-  live?: string;
-  demo?: string;
-  year: string;
+export function ProjectStatus({ status }: { status: Project["status"] }) {
+  return (
+    <span className="inline-flex items-center gap-2">
+      {status === "Live demo" ? (
+        <span className="pulse-dot size-1.5 rounded-full bg-pulse" />
+      ) : (
+        <span className="size-1.5 border border-ink-4" />
+      )}
+      {status}
+    </span>
+  );
 }
 
-const projects: Project[] = [
-  {
-    id: "01",
-    title: "Android Automotive Telemetry System",
-    description:
-      "High-frequency vehicle telemetry ingestion and warning system designed for Android Automotive OS (AAOS), decoupling real-time STOMP WebSocket broadcast (10Hz) from throttled PostgreSQL persistence (1Hz) to maintain system responsiveness.",
-    challenge:
-      "Broadcasting high-frequency sensor streams (10Hz) to telemetry clients without causing database write saturation, while preventing event storms from rapid warning threshold crossings.",
-    solution:
-      "Designed a decoupled ingestion-to-storage pipeline utilizing Spring Boot's TaskExecutor. Telemetry frames are broadcasted instantly to clients via an in-memory STOMP broker. Database writes are batched and flushed asynchronously at 1Hz. Implemented a stateful warning evaluation engine with dynamic cooldown mechanics to prevent warning log spam.",
-    image: "/automotive.png",
-    tech: [
-      "Spring Boot",
-      "Kotlin",
-      "Android SDK",
-      "WebSocket (STOMP)",
-      "PostgreSQL",
-      "JPA/Hibernate",
-    ],
-    roleTags: ["Backend", "IoT / Systems"],
-    features: [
-      "Real-time sensor telemetry streaming (10Hz) over WebSockets/STOMP",
-      "Asynchronous throttled DB persistence (1Hz) using dedicated ThreadPools",
-      "Configurable threshold alert system (Speed, RPM, Engine Temp, Fuel, Tire Pressure)",
-      "Stateful warning engine with cooldown intervals to suppress event storms",
-      "Automotive HMI UI simulator dashboard built for AAOS (Android API 34)",
-      "Optimized query performance via compound database indexes on (vehicle_id, recorded_at DESC)",
-    ],
-    github: "https://github.com/tinhne/vehicle-telemetry",
-    year: "2025",
-  },
-  {
-    id: "02",
-    title: "Book Review Platform",
-    description:
-      "Full-stack book catalogue with JWT auth, dual review types, and server-driven listing with search and filters. Spring handles business rules; React is the client.",
-    challenge:
-      "Keeping writes consistent when reviews and likes touch several tables, and exposing a fast listing API without pushing pagination logic to the client.",
-    solution:
-      "Spring Security for JWT, service layer with @Transactional on multi-step operations, global exception handling and validation at the boundary, plus CORS tuned for the React app. Listing uses server-side pagination with filterable queries.",
-    image: "/bookreview.png",
-    tech: ["Java", "Spring Boot", "Spring Security", "React", "PostgreSQL"],
-    roleTags: ["Full-Stack", "Backend"],
-    features: [
-      "JWT authentication (Spring Security)",
-      "Book listing, dual review system, toggle-like",
-      "Server-side pagination, search & filter",
-      "@Transactional rollback on multi-step writes",
-      "CORS, input validation, global error handling",
-    ],
-    live: "https://book-review-frontend-eta.vercel.app/",
-    year: "2024",
-  },
-  {
-    id: "03",
-    title: "MeetAI — AI Video Meeting SaaS",
-    description:
-      "Video meetings with live AI transcription and summaries, subscription billing, and heavy AI work moved off the request path so the app stays responsive.",
-    challenge:
-      "Multimodal AI is slow and bursty; charging users fairly meant wiring payments without blocking calls or transcript pipelines.",
-    solution:
-      "Next.js and Node for the product surface, Drizzle for typed persistence, Inngest for async AI and follow-up jobs, Polar for subscriptions, and OpenAI’s multimodal live API behind that queue. Deployed on Vercel with CI/CD.",
-    image: "/meetAI.png",
-    tech: [
-      "Next.js",
-      "Node.js",
-      "OpenAI API",
-      "Drizzle ORM",
-      "Inngest",
-      "Polar",
-    ],
-    roleTags: ["Full-Stack"],
-    features: [
-      "Real-time video calls",
-      "AI transcription & summarization (OpenAI Multimodal Live API)",
-      "Background jobs with Inngest — AI work off the request cycle",
-      "Subscriptions & payments (Polar)",
-      "CI/CD on Vercel",
-    ],
-    github: "https://github.com/tinhne/meetai",
-    live: "https://meetai-assistant.vercel.app",
-    year: "2025",
-  },
-  {
-    id: "04",
-    title: "Devhelp — Mezon Developer Bot",
-    description:
-      "NestJS bot for Mezon: command snippets, bug triage with severity, and linked solutions — searchable and recoverable after soft deletes.",
-    challenge:
-      "Teams needed one place to save commands, log bugs, and attach fixes, with search that still worked after archiving or soft-deleting entries.",
-    solution:
-      "Modular NestJS services, SQLite with full-text search across commands, bugs, and solutions, soft delete with restore, and bot lifecycle commands (activate / deactivate / reset) on top of the Mezon SDK.",
-    image: "/mezon.png",
-    tech: ["NestJS", "TypeScript", "SQLite", "Mezon SDK"],
-    roleTags: ["Backend"],
-    features: [
-      "Command CRUD (save, list, search, update, delete, restore)",
-      "Bug tracking with severity (high / medium / low)",
-      "Solutions linked to bugs",
-      "Soft delete & restore",
-      "Full-text search across commands, bugs, solutions",
-      "Bot lifecycle: activate / deactivate / reset",
-      "NestJS modular layout",
-    ],
-    github: "https://github.com/tinhne/Devhelp-mezon",
-    demo: "https://drive.google.com/file/d/1v_pOt-UUMOHM4rcRLqAfRPFOAREstHLk/view?usp=sharing",
-    year: "2025",
-  },
-  {
-    id: "05",
-    title: "Clinic Booking System",
-    description:
-      "Clinic scheduling with patient records, JWT-protected APIs, and Stream-powered calls so staff and patients can connect without a separate app stack.",
-    challenge:
-      "Appointments, identity, and real-time media each have different failure modes; the UI still had to feel like one product.",
-    solution:
-      "Express and PostgreSQL for scheduling and patient CRUD, JWT for auth boundaries, Stream for call rooms, and notification hooks when appointment status changes.",
-    image:
-      "https://res.cloudinary.com/dbgcpl6na/image/upload/v1775275949/original-62ae0e71b2d38d9c067f19bf8b976309_rhrlpk.webp",
-    tech: ["Node.js", "Express.js", "React", "PostgreSQL", "Stream API"],
-    roleTags: ["Full-Stack"],
-    features: [
-      "Appointment scheduling",
-      "Patient CRUD",
-      "JWT authentication",
-      "Real-time calls (Stream API)",
-      "Automated status notifications",
-    ],
-    github: "https://github.com/tinhne/Clinic-Management",
-    year: "2024",
-  },
-  {
-    id: "06",
-    title: "MazaBank — Desktop Banking App",
-    description:
-      "JavaFX desktop app for a small bank: role-based admin and client flows, transfers, deposits, and account types with different limits — all persisted locally.",
-    challenge:
-      "Desktop state, table-heavy UIs, and money movements need predictable lifecycle and clear feedback without a web framework doing layout for you.",
-    solution:
-      "JavaFX views with CSS, singletons for shared model and stage lifecycle, custom list cell factories for transactions and clients, and SQLite with explicit connection handling and user-visible errors.",
-    image: "/mazebank.png",
-    tech: ["Java", "JavaFX", "SQLite"],
-    roleTags: ["Desktop"],
-    features: [
-      "Roles: Admin & Client",
-      "Transfers, deposits, full transaction history",
-      "Checking & Savings with transaction limits",
-      "Singleton pattern for model & stage lifecycle",
-      "Custom cell factories (transactions, clients)",
-      "SQLite persistence with connection & error handling",
-      "Custom JavaFX UI + CSS",
-    ],
-    github: "https://github.com/tinhne/MazaBank",
-    year: "2024",
-  },
-  {
-    id: "07",
-    title: "Medical Diagnosis Chatbot",
-    description:
-      "Symptom-to-diagnosis pipeline combining gradient boosting and association rules, with a Spring Boot API for access control in front of the Python ML core.",
-    challenge:
-      "Medical labels are sparse and noisy; the model had to train on cleaned and partly synthetic data while staying explainable enough for a demo product.",
-    solution:
-      "Crawled and normalised terms from Disease Ontology, generated and cleaned synthetic cases, trained XGBoost with Apriori-style rules for patterns, and exposed the flow through Spring Boot authentication layers.",
-    image:
-      "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop",
-    tech: ["Python", "XGBoost", "Apriori", "Pandas", "Java", "Spring Boot"],
-    roleTags: ["AI/ML", "Backend"],
-    features: [
-      "ML engine: XGBoost + association rules",
-      "Pipeline from Disease Ontology crawl",
-      "Synthetic data & cleaning",
-      "Auth via Java Spring Boot",
-    ],
-    github: "https://github.com/tinhne/capstons2",
-    year: "2025",
-  },
-];
+function FeaturedProject({ project, flip }: { project: Project; flip: boolean }) {
+  const href = `/work/${project.slug}`;
+  return (
+    <article
+      aria-labelledby={`project-${project.slug}`}
+      className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-8"
+    >
+      <Reveal className={cn("lg:col-span-7", flip && "lg:order-2")}>
+        <Link
+          href={href}
+          className="group relative block border border-rule bg-panel"
+          aria-label={`Read the ${project.title} case study`}
+        >
+          <RegMarks />
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <ParallaxImage shot={project.image} sizes="(min-width: 1024px) 760px, 100vw" />
+          </div>
+          <div className="label flex items-center justify-between gap-4 border-t border-rule px-4 py-3">
+            <span className="truncate">
+              <span className="text-brand">fig. P{project.index}</span> — {project.kind}
+            </span>
+            <span className="hidden shrink-0 items-center gap-2 text-ink-2 sm:flex">
+              Case study
+              <ArrowRight
+                aria-hidden
+                className="size-3.5 transition-transform duration-500 ease-out-expo group-hover:translate-x-1.5"
+              />
+            </span>
+          </div>
+        </Link>
+      </Reveal>
+
+      <Reveal
+        delay={0.08}
+        className={cn("lg:col-span-5", flip ? "lg:order-1 lg:pr-10" : "lg:pl-6")}
+      >
+        <div className="label flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="text-brand">P—{project.index}</span>
+          <span>{project.year}</span>
+          <span aria-hidden className="text-ink-4">/</span>
+          <ProjectStatus status={project.status} />
+        </div>
+        <h3
+          id={`project-${project.slug}`}
+          className="mt-5 text-[2.125rem] font-medium leading-[1.02] tracking-[-0.038em] text-ink md:text-[2.75rem]"
+        >
+          <Link href={href} className="link-draw">
+            {project.title}
+          </Link>
+        </h3>
+        <p className="mt-4 text-xl leading-snug tracking-[-0.01em] text-ink-2">{project.tagline}</p>
+        <p className="mt-3 text-[16px] leading-relaxed text-ink-3">{project.summary}</p>
+
+        <dl className="mt-8 border-t border-rule text-[15px]">
+          {[
+            { k: "Role", v: project.role },
+            { k: "Focus", v: project.focus },
+          ].map((row) => (
+            <div key={row.k} className="grid grid-cols-[5.5rem_1fr] gap-4 border-b border-rule py-3">
+              <dt className="label pt-0.5">{row.k}</dt>
+              <dd className="text-ink-2">{row.v}</dd>
+            </div>
+          ))}
+          <div className="grid grid-cols-[5.5rem_1fr] gap-4 border-b border-rule py-3">
+            <dt className="label pt-1">Stack</dt>
+            <dd className="flex flex-wrap gap-1.5">
+              {project.tags.map((t) => (
+                <Tag key={t}>{t}</Tag>
+              ))}
+            </dd>
+          </div>
+        </dl>
+
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+          <Link
+            href={href}
+            className="group inline-flex h-10 items-center gap-2 rounded-[2px] bg-ink px-4 font-medium text-canvas transition-colors hover:bg-brand hover:text-on-brand"
+          >
+            View case study
+            <ArrowRight
+              aria-hidden
+              className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+          {project.links
+            .filter((l) => l.kind !== "github" || l.label === "GitHub" || l.label === "API source")
+            .map((l) => (
+              <ExternalLink key={l.href} href={l.href}>
+                {l.kind === "github" ? "GitHub" : l.label}
+              </ExternalLink>
+            ))}
+        </div>
+      </Reveal>
+    </article>
+  );
+}
 
 export function Projects() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
   return (
-    <section
-      id="works"
-      aria-labelledby="works-heading"
-      className="py-28 md:py-32 relative scroll-mt-11 bg-background"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 md:mb-16 max-w-2xl border-l-2 border-primary/35 pl-5 md:pl-6"
-        >
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            Selected work
-          </p>
-          <h2
-            id="works-heading"
-            className="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground tracking-tight"
-          >
-            Projects
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            Click a row for context, stack, and links.{" "}
-            <span className="text-foreground/80">{projects.length} builds</span>{" "}
-            below.
-          </p>
-        </motion.div>
+    <section id="projects" aria-labelledby="projects-title" className="py-24 md:py-32">
+      <div className="container-x">
+        <SectionHeader
+          id="projects-title"
+          index="03"
+          label="Projects"
+          aside={`${projects.length} case studies · ${archive.length} in the archive`}
+          title="Selected work."
+          muted="Explained end to end."
+        />
 
-        <div className="space-y-0 divide-y divide-border">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              onMouseEnter={() => setHoveredId(project.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer py-8 first:pt-0 relative"
-            >
-              <div className="grid lg:grid-cols-12 gap-6 items-start">
-                <div className="lg:col-span-1">
-                  <span className="font-mono text-sm text-muted-foreground">
-                    {project.id}
-                  </span>
-                </div>
-
-                <div className="lg:col-span-4 space-y-3">
-                  <h3
-                    className="text-xl md:text-2xl font-medium text-foreground group-hover:text-primary 
-                               transition-colors duration-200"
-                  >
-                    {project.title}
-                  </h3>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {project.year}
-                    </span>
-                    <span className="text-border" aria-hidden>
-                      ·
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.roleTags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="outline"
-                          className="font-mono text-[10px] uppercase tracking-wide px-2 py-0 h-5 border-muted-foreground/30 text-muted-foreground group-hover:border-primary/40 group-hover:text-primary/90"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-4">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.slice(0, 5).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs font-mono bg-secondary text-secondary-foreground
-                                 group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-200"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.tech.length > 5 && (
-                      <span className="px-2 py-1 text-xs font-mono text-muted-foreground">
-                        +{project.tech.length - 5}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="lg:col-span-3 flex justify-end items-start">
-                  <motion.div
-                    animate={{ x: hoveredId === project.id ? 8 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center gap-2 text-muted-foreground group-hover:text-primary 
-                             transition-colors duration-200"
-                  >
-                    <span className="font-mono text-sm">Details</span>
-                    <svg
-                      className="w-5 h-5 shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="square"
-                        strokeLinejoin="miter"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </motion.div>
-                </div>
-              </div>
-
-              <AnimatePresence>
-                {hoveredId === project.id && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-0 top-0 w-64 h-48 pointer-events-none z-10 hidden xl:block"
-                    style={{ transform: "translate(20%, -20%)" }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt=""
-                      fill
-                      className="object-cover border border-border"
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.article>
+        <div className="mt-16 space-y-24 md:mt-24 md:space-y-36">
+          {projects.map((project, i) => (
+            <FeaturedProject key={project.slug} project={project} flip={i % 2 === 1} />
           ))}
         </div>
+
+        <div className="mt-28 md:mt-40">
+          <Reveal>
+            <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-4">
+              <h3 className="text-xl font-medium tracking-tight text-ink md:text-2xl">Archive</h3>
+              <span className="label">Earlier builds, smaller scope</span>
+            </div>
+          </Reveal>
+          <ul>
+            {archive.map((item, i) => (
+              <Reveal
+                as="li"
+                key={item.title}
+                delay={i * 0.04}
+                className="group grid grid-cols-1 gap-3 border-b border-rule py-6 transition-colors hover:bg-panel/40 md:grid-cols-12 md:gap-6 md:px-3"
+              >
+                <span className="font-mono text-[13px] text-ink-4 md:col-span-1 md:pt-1">
+                  {item.year}
+                </span>
+                <div className="md:col-span-6">
+                  <p className="text-[18px] font-medium tracking-tight text-ink">{item.title}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-3">{item.description}</p>
+                </div>
+                <div className="flex flex-wrap content-start gap-1.5 md:col-span-3 md:pt-1">
+                  {item.stack.map((s) => (
+                    <Tag key={s}>{s}</Tag>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 text-[15px] md:col-span-2 md:justify-end md:pt-0.5">
+                  {item.links.map((l) => (
+                    <ExternalLink key={l.href} href={l.href}>
+                      {l.label}
+                    </ExternalLink>
+                  ))}
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </div>
-
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center 
-                     justify-center p-6 overflow-y-auto"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="project-modal-title"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-card border border-border max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-lg"
-            >
-              <div className="relative h-56 md:h-72">
-                <Image
-                  src={selectedProject.image}
-                  alt=""
-                  fill
-                  className="object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-background/80 border border-border
-                           flex items-center justify-center hover:bg-background transition-colors"
-                  aria-label="Close"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              <div className="p-8">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-6">
-                  <div>
-                    <span className="font-mono text-sm text-primary">
-                      {selectedProject.year}
-                    </span>
-                    <h3
-                      id="project-modal-title"
-                      className="text-2xl md:text-3xl font-serif font-bold text-foreground mt-2"
-                    >
-                      {selectedProject.title}
-                    </h3>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {selectedProject.roleTags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="font-mono text-xs"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 shrink-0">
-                    {selectedProject.github && (
-                      <a
-                        href={selectedProject.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 border border-border font-mono text-sm 
-                                 hover:border-primary hover:text-primary transition-colors"
-                      >
-                        GitHub
-                      </a>
-                    )}
-                    {selectedProject.live && (
-                      <a
-                        href={selectedProject.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 bg-primary text-primary-foreground font-mono text-sm 
-                                 hover:bg-primary/90 transition-colors"
-                      >
-                        Live
-                      </a>
-                    )}
-                    {selectedProject.demo && (
-                      <a
-                        href={selectedProject.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 border border-primary/50 font-mono text-sm text-primary
-                                 hover:bg-primary/10 transition-colors"
-                      >
-                        Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                <p className="text-muted-foreground leading-relaxed mb-8">
-                  {selectedProject.description}
-                </p>
-
-                <div className="mb-8">
-                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-                    Core features
-                  </span>
-                  <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc pl-5 marker:text-primary/60">
-                    {selectedProject.features.map((f) => (
-                      <li key={f} className="leading-relaxed">
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div className="border-l-2 border-destructive/70 pl-4">
-                    <span className="font-mono text-xs text-destructive uppercase tracking-widest">
-                      Challenge
-                    </span>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {selectedProject.challenge}
-                    </p>
-                  </div>
-                  <div className="border-l-2 border-emerald-600/70 dark:border-emerald-500/70 pl-4">
-                    <span className="font-mono text-xs text-emerald-600 dark:text-emerald-500 uppercase tracking-widest">
-                      Approach
-                    </span>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {selectedProject.solution}
-                    </p>
-                  </div>
-                </div>
-
-                <div>
-                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-                    Tech stack
-                  </span>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {selectedProject.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1.5 text-sm font-mono bg-secondary text-secondary-foreground"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

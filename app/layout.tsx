@@ -1,80 +1,100 @@
-import type { Metadata } from "next";
-import {
-  Space_Grotesk,
-  JetBrains_Mono,
-  Playfair_Display,
-} from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Providers } from "@/components/providers";
+import { Nav } from "@/components/portfolio/nav";
+import { Footer } from "@/components/portfolio/footer";
+import { site } from "@/lib/content";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const geist = Geist({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-geist-sans",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-});
+const description =
+  "Le Van Trung Tinh (Trung Tinh) is a software engineer in Da Nang, Vietnam, building full-stack applications and AI-powered products with TypeScript, Java, Spring Boot, Next.js and PostgreSQL.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trungtinh.site"),
-  title: "Trung Tinh (Le Van Trung Tinh) - Full-Stack Developer | Next.js, TypeScript",
-description:
-  "Trung Tinh (Le Van Trung Tinh) is a Full-Stack Developer from Vietnam specializing in TypeScript, Next.js, and scalable systems. Explore projects and experience.",
-  generator: "Next.js",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — Software Engineer · AI Product Builder`,
+    template: `%s · ${site.name}`,
+  },
+  description,
+  applicationName: "Trung Tinh — Portfolio",
   keywords: [
-  "Trung Tinh",
-  "Le Van Trung Tinh",
-  "trungtinh",
-  "Trung Tinh Developer",
-  "Full-Stack Developer Vietnam",
-  "TypeScript Developer",
-  "Next.js Developer",
-],
-  authors: [{ name: "Le Van Trung Tinh" }],
-  openGraph: {
-  title: "Trung Tinh - Full-Stack Developer",
-  description: "TypeScript, Next.js, scalable full-stack systems",
-  url: "https://trungtinh.site",
-  siteName: "Trung Tinh Portfolio",
-  images: [
-    {
-      url: "/og.png",
-      width: 1200,
-      height: 630,
-    },
+    "Le Van Trung Tinh",
+    "Trung Tinh",
+    "trungtinh",
+    "Software Engineer Vietnam",
+    "Full-stack Developer",
+    "Backend Developer",
+    "AI Product Engineer",
+    "Next.js",
+    "TypeScript",
+    "Java Spring Boot",
+    "Da Nang",
   ],
-  locale: "en_US",
-  type: "website",
-},
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${site.name} — Software Engineer · AI Product Builder`,
+    description:
+      "Full-stack applications and AI-powered products — case studies, architecture and the engineering behind them.",
+    url: site.url,
+    siteName: "Trung Tinh",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Software Engineer · AI Product Builder`,
+    description,
+  },
+  robots: { index: true, follow: true },
   icons: {
-    icon: [
-      {
-        url: "/logo.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/logo.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/logo.svg",
-        type: "image/svg+xml",
-      },
-    ],
+    icon: [{ url: "/logo.png" }, { url: "/logo.svg", type: "image/svg+xml" }],
     apple: "/logo.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#080b12" },
+    { media: "(prefers-color-scheme: light)", color: "#f2f0ea" },
+  ],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  alternateName: site.shortName,
+  url: site.url,
+  jobTitle: "Software Engineer",
+  description,
+  address: { "@type": "PostalAddress", addressLocality: "Da Nang", addressCountry: "VN" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Duy Tan University" },
+  knowsAbout: [
+    "Full-stack development",
+    "Backend development",
+    "AI application development",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "Next.js",
+    "PostgreSQL",
+  ],
+  sameAs: [site.github, site.linkedin],
 };
 
 export default function RootLayout({
@@ -83,38 +103,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Le Van Trung Tinh",
-        "alternateName": "Trung Tinh",
-        "url": "https://trungtinh.site",
-        "jobTitle": "Full-Stack Developer",
-        "sameAs": [
-          "https://github.com/tinhne",
-          "https://www.linkedin.com/in/trung-t%C3%ADnh-l%C3%AA-v%C4%83n-b72669297/"
-        ],
-      }),
-    }}
-  />
-</head>
-      <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${playfair.variable} font-sans antialiased bg-background text-foreground`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
+    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="grain min-h-dvh font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <div id="top" />
+        <a
+          href="#main"
+          className="fixed left-4 top-3 z-[70] -translate-y-20 rounded-[2px] bg-ink px-3 py-2 text-[15px] text-canvas transition-transform focus:translate-y-0"
         >
+          Skip to content
+        </a>
+        <Providers>
+          <Nav />
           {children}
-          <ThemeToggle />
-        </ThemeProvider>
+          <Footer />
+        </Providers>
         <Analytics />
       </body>
     </html>
