@@ -1,144 +1,153 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { skillGroups, type Skill } from "@/lib/content";
+import { cn } from "@/lib/utils";
+import { Reveal } from "./reveal";
+import { RefLinks, SectionHeader } from "./primitives";
 
-interface SkillCategory {
-  name: string
-  description: string
-  skills: string[]
+const totalSkills = skillGroups.reduce((n, g) => n + g.skills.length, 0);
+
+function Readout({ skill, compact }: { skill: Skill | null; compact?: boolean }) {
+  return (
+    <div aria-live="polite" className={cn(compact ? "pt-4" : "")}>
+      <AnimatePresence mode="wait" initial={false}>
+        {skill ? (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+          >
+            {!compact && (
+              <p className="text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-tight tracking-[-0.035em] text-ink">
+                {skill.name}
+              </p>
+            )}
+            <p className={cn("label text-ink-4", !compact && "mt-6")}>
+              Used in · {skill.refs.length}
+            </p>
+            <RefLinks ids={skill.refs} className="mt-2" />
+          </motion.div>
+        ) : (
+          <motion.p
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="text-[15px] leading-relaxed text-ink-3"
+          >
+            Hover, focus or tap any tool. You&apos;ll see the projects and roles where I actually
+            used it — and related tools light up.
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
-const skillCategories: SkillCategory[] = [
-  {
-    name: "Core Languages",
-    description: "Primary Languages & Frameworks",
-    skills: [
-      "Node.js",
-      "TypeScript",
-      "JavaScript",
-      "Java",
-      "Spring Boot",
-      "Android (AAOS)",
-      "NestJS",
-      "React",
-      "Next.js",
-      "Fastify",
-      "Express.js",
-      "REST API",
-      "tRPC",
-    ],
-  },
-  {
-    name: "Database & ORM",
-    description: "Data Storage & Management",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Drizzle ORM", "Prisma", "Neon", "Pinecone"],
-  },
-  {
-    name: "AI / ML",
-    description: "Machine Learning & AI Integration",
-    skills: ["OpenAI API", "XGBoost", "Association Rules", "Pandas", "FastAPI", "Scikit-learn"],
-  },
-  {
-    name: "DevOps & Tools",
-    description: "Development & Deployment",
-    skills: ["Docker", "Git", "Linux", "Bash Scripting", "Postman", "Vercel", "Inngest", "Tailwind CSS"],
-  },
-]
-
 export function Skills() {
+  const [active, setActive] = useState<Skill | null>(null);
+
+  const related = useMemo(() => {
+    if (!active) return new Set<string>();
+    const ids = new Set(active.refs);
+    return new Set(
+      skillGroups
+        .flatMap((g) => g.skills)
+        .filter((s) => s !== active && s.refs.some((r) => ids.has(r)))
+        .map((s) => s.name),
+    );
+  }, [active]);
+
   return (
-    <section
-      id="skills"
-      aria-labelledby="skills-heading"
-      className="py-28 md:py-32 bg-card relative overflow-hidden scroll-mt-11"
-    >
-      {/* Background grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #ffffff 1px, transparent 1px),
-            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
+    <section id="skills" aria-labelledby="skills-title" className="py-28 md:py-40">
+      <div className="container-x">
+        <SectionHeader
+          id="skills-title"
+          index="05"
+          label="Skills"
+          aside="No percentage bars"
+          title="Tools I've shipped with."
+          muted="Each one traced back to real work."
+        />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 md:mb-16 max-w-2xl border-l-2 border-primary/35 pl-5 md:pl-6"
-        >
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            Stack
-          </p>
-          <h2
-            id="skills-heading"
-            className="mt-3 text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground tracking-tight"
-          >
-            Tools I use
-          </h2>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xl">
-            Pulled from real projects and work — not a keyword dump.
-          </p>
-        </motion.div>
-
-        {/* Skills grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="border border-border p-6 bg-background group hover:border-primary/50 transition-colors duration-300"
-            >
-              <div className="mb-6">
-                <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">{category.description}</p>
+        <div className="mt-16 grid grid-cols-1 gap-12 md:mt-24 lg:grid-cols-12 lg:gap-8">
+          <Reveal className="hidden lg:col-span-4 lg:block">
+            <div className="sticky top-28 border-t border-rule pt-5">
+              <p className="label mb-5">
+                <span className="text-brand">Readout</span> · {totalSkills} tools
+              </p>
+              <div className="min-h-[12rem]">
+                <Readout skill={active} />
               </div>
+            </div>
+          </Reveal>
 
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      duration: 0.3, 
-                      delay: (categoryIndex * 0.1) + (skillIndex * 0.05) 
-                    }}
-                    className="px-3 py-1.5 bg-secondary border border-border font-mono text-sm text-foreground hover:border-primary hover:text-primary transition-colors cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <div className="lg:col-span-8" onMouseLeave={() => setActive(null)}>
+            {skillGroups.map((group, gi) => {
+              const groupHasActive = active && group.skills.includes(active);
+              return (
+                <Reveal
+                  key={group.key}
+                  delay={gi * 0.05}
+                  className="grid grid-cols-1 gap-4 border-t border-rule py-6 sm:grid-cols-[10rem_1fr] sm:gap-6"
+                >
+                  <h3 className="label flex items-baseline gap-2 pt-2">
+                    <span className="text-ink-2">{group.title}</span>
+                    <span className="text-ink-4">{group.skills.length}</span>
+                  </h3>
+                  <div>
+                    <ul className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => {
+                        const isActive = active === skill;
+                        const isRelated = related.has(skill.name);
+                        return (
+                          <li key={skill.name}>
+                            <button
+                              type="button"
+                              aria-pressed={isActive}
+                              onMouseEnter={() => setActive(skill)}
+                              onFocus={() => setActive(skill)}
+                              onClick={() => setActive(isActive ? null : skill)}
+                              className={cn(
+                                "rounded-[2px] border px-3 py-1.5 text-[14px] transition-[color,background-color,border-color,opacity] duration-200",
+                                isActive
+                                  ? "border-ink bg-ink text-canvas"
+                                  : isRelated
+                                    ? "border-brand/60 text-ink"
+                                    : "border-rule text-ink-2 hover:border-rule-strong hover:text-ink",
+                                active && !isActive && !isRelated && "opacity-45",
+                              )}
+                            >
+                              {skill.name}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    {groupHasActive && (
+                      <div className="lg:hidden">
+                        <Readout skill={active} compact />
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              );
+            })}
+            <p className="border-t border-rule pt-5 text-[13.5px] leading-relaxed text-ink-4">
+              Listed tools are ones I&apos;ve used in professional work or shipped personal projects.
+              Things I&apos;m only learning live under{" "}
+              <a href="#about" className="link-draw text-ink-3 hover:text-ink">
+                Currently exploring
+              </a>
+              .
+            </p>
+          </div>
         </div>
-
-        {/* Note for recruiters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 text-center"
-        >
-          <p className="font-mono text-sm text-muted-foreground">
-            <span className="text-primary">*</span> Always eager to learn new technologies as the job requires
-          </p>
-        </motion.div>
       </div>
     </section>
-  )
+  );
 }

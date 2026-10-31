@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
+    // Screenshots are pre-optimized to WebP in /public/projects.
     unoptimized: true,
   },
 }
