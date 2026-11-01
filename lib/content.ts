@@ -52,6 +52,7 @@ export const pageSectionIds = ["home", ...sections.map((s) => s.id)] as const;
 /* ------------------------------------------------------------------ */
 
 export type RefId =
+  | "retailops"
   | "meet-ai"
   | "book-review"
   | "vehicle-telemetry"
@@ -64,6 +65,7 @@ export type RefId =
   | "medical-chatbot";
 
 export const refs: Record<RefId, { label: string; href: string }> = {
+  retailops: { label: "RetailOps Intelligence", href: "/work/retailops-intelligence" },
   "meet-ai": { label: "Meet.AI", href: "/work/meet-ai" },
   "book-review": { label: "Book Review", href: "/work/book-review" },
   "vehicle-telemetry": {
@@ -262,8 +264,135 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "meet-ai",
+    slug: "retailops-intelligence",
     index: "01",
+    title: "RetailOps Intelligence",
+    tagline: "An operations inbox for online stores: tested rules find the problems, an AI copilot explains them.",
+    summary:
+      "A B2B SaaS that imports a store's products, orders and stock from CSV, detects oversold SKUs, late shipments, refunds owed and inconsistent data with nine deterministic rules, and gives the team a prioritised inbox where every fix is verified by the next data import.",
+    year: "2026",
+    status: "Source available",
+    kind: "Full-stack B2B SaaS · Personal project",
+    role: "Solo developer — product discovery, domain design, full stack, AI, testing, Docker and CI",
+    focus: "Domain modelling and grounded AI",
+    tags: ["FastAPI", "PostgreSQL", "Next.js", "TypeScript", "Playwright", "Docker", "Gemini"],
+    image: {
+      src: "/projects/retailops-overview.webp",
+      alt: "RetailOps Intelligence overview: KPI tiles, a priority-ranked attention list and value at risk per category",
+      width: 1440,
+      height: 900,
+    },
+    gallery: [
+      {
+        src: "/projects/retailops-overview.webp",
+        alt: "Operations overview with KPIs and the attention list",
+        width: 1440,
+        height: 900,
+        caption: "Overview of the fictional demo store, signed in as the read-only demo viewer",
+      },
+      {
+        src: "/projects/retailops-exception-detail.webp",
+        alt: "Exception page with the priority breakdown and the recommended action",
+        width: 1440,
+        height: 900,
+        caption: "One exception: why it ranks P1 (score breakdown), the rule's recommended action and the lifecycle actions",
+      },
+      {
+        src: "/projects/retailops-copilot.webp",
+        alt: "Copilot answer split into facts and metrics, each with a record reference",
+        width: 1440,
+        height: 900,
+        caption: "Copilot answer: labelled facts and metrics, each linked to the record it rests on",
+      },
+      {
+        src: "/projects/retailops-exceptions-inbox.webp",
+        alt: "Exceptions inbox with triage views, filters and search",
+        width: 1440,
+        height: 900,
+        caption: "The exceptions inbox with triage views and filters",
+      },
+    ],
+    links: [{ label: "GitHub", href: "https://github.com/tinhne/retailops-intelligence", kind: "github" }],
+    linksNote:
+      "No hosted demo yet. One docker compose command runs the whole stack with a fictional demo store; the repository also ships ten fictional Vietnamese sample shops.",
+    overview: [
+      "Small online shops run on exports and spreadsheets, so problems surface late: a SKU sold more times than it exists, a paid order past its handling deadline, a cancelled order that was never refunded.",
+      "RetailOps Intelligence imports the store's data, runs nine rules that each produce structured evidence, and turns every finding into one exception with a transparent 0–100 priority, an owner, a due date and a lifecycle. When someone marks it resolved, the next evaluation checks the data again and reopens it if the problem is still there.",
+    ],
+    problem:
+      "An operations tool is only useful if its numbers can be trusted: stock must not be double-counted when imports arrive late, an order's payment and fulfillment must not be collapsed into one status, and an AI assistant must never invent a fact or change data.",
+    solution:
+      "Keep every business calculation deterministic and tested, and let AI explain on top of it. A modular FastAPI monolith owns the domain rules, an append-only inventory ledger and the exception engine; the copilot only reads through allowlisted, permission-checked tools, and its answers carry references to the records they use.",
+    contributions: [
+      "Wrote the product discovery, business workflows, domain contracts (state machines, business rules, exception catalog, priority model) and 13 architecture decision records before building.",
+      "Modelled orders with three independent status axes (lifecycle, payment, fulfillment) and an import sync that only moves an order to a reachable state.",
+      "Built an append-only inventory ledger with reservations, available = on hand − reserved, and stock counts applied as of the time they were taken so a late import cannot double-count shipments.",
+      "Implemented the exception engine: nine pure rules, deduplication, auto-resolve, supersede, verification of manual fixes and a per-store lock for scheduled, manual and import-triggered evaluations.",
+      "Built the CSV import pipeline: validation with issue codes, a preview of expected changes, strict or valid-rows-only apply in one transaction, idempotency and a formula-safe issues export.",
+      "Built the Next.js app (overview, exception inbox and investigation, orders, inventory, imports, copilot, admin) and an AI copilot with a deterministic fallback, so it works without an LLM key; free-tier Gemini or any OpenAI-compatible model can be plugged in.",
+      "Covered it with 887 backend tests against real PostgreSQL, 268 component tests, and a Playwright suite (the 12-step operations journey, a 375 px pass and axe WCAG 2.1 AA scans) that runs in GitHub Actions against the Docker Compose stack.",
+    ],
+    architecture: {
+      layers: [
+        { name: "Client", nodes: ["Next.js App Router", "TanStack Query", "Generated API types (OpenAPI)"] },
+        { name: "API", nodes: ["FastAPI modular monolith", "Session auth · CSRF · role permissions", "Copilot tool registry"] },
+        { name: "Domain", nodes: ["Order state machine", "Inventory ledger & reservations", "Exception engine (9 rules)"] },
+        { name: "Async", nodes: ["Scheduled evaluation worker", "Import-triggered evaluation"] },
+        { name: "Data & AI", nodes: ["PostgreSQL 16 + Alembic", "Gemini / OpenAI-compatible (free tier)", "Deterministic fallback"] },
+      ],
+      flows: [
+        "same-origin /api calls",
+        "domain services per module",
+        "evaluations write exceptions",
+        "read-only tools for the copilot",
+      ],
+      notes: [
+        "Business facts are computed by tested rules; the AI only explains and drafts, and a person saves every note.",
+        "Every store-scoped query is filtered by store, and another tenant's data answers 404.",
+      ],
+    },
+    stack: [
+      { group: "Backend", items: ["Python 3.12", "FastAPI", "Pydantic v2", "SQLAlchemy 2", "Alembic"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "TanStack Query"] },
+      { group: "Data", items: ["PostgreSQL 16", "OpenAPI-generated TypeScript contracts"] },
+      { group: "AI", items: ["Gemini (free tier)", "OpenAI-compatible providers", "Deterministic fallback engine"] },
+      { group: "Quality & delivery", items: ["pytest", "mypy --strict", "Vitest", "Playwright + axe-core", "Docker Compose", "GitHub Actions"] },
+    ],
+    features: [
+      { title: "Exception inbox", body: "Triage views, filters, a transparent priority score and the full lifecycle: acknowledge, assign, resolve, dismiss, reopen." },
+      { title: "Verified fixes", body: "A manual resolution waits for fresh data; if the condition is still there, the exception reopens with the reason." },
+      { title: "Safe CSV imports", body: "Every row validated, a preview of the changes, atomic apply and a downloadable list of issues." },
+      { title: "Inventory you can audit", body: "Append-only movement ledger, reservations for paid orders, stock health per product." },
+      { title: "Grounded copilot", body: "Answers split into facts, metrics, estimates and recommendations, each linked to its records." },
+      { title: "Roles and audit", body: "Owner, manager, staff, analyst and read-only viewer roles, enforced in the API and recorded in an audit log." },
+    ],
+    challenges: [
+      {
+        title: "Cancelled, but still paid",
+        problem:
+          "A single order status cannot say that a cancelled order still holds the customer's money, or that a refunded order was already delivered.",
+        approach:
+          "Three status axes with an explicit compatibility matrix and transition graph; a dedicated rule raises \"refund pending\" when a cancelled order is still paid.",
+      },
+      {
+        title: "Was it actually fixed?",
+        problem:
+          "People mark issues resolved before the data proves it, and a correct fix can look unresolved until the next export arrives.",
+        approach:
+          "Manual resolutions stay \"awaiting verification\"; the engine reopens them only if the condition persists after fresh data is imported or 24 hours pass.",
+      },
+      {
+        title: "An AI that cannot make things up",
+        problem:
+          "A copilot over business data must not invent numbers, leak another store's data or follow instructions hidden in imported text.",
+        approach:
+          "Eleven allowlisted read-only tools with permission and store checks, references validated against the tool results, imported text treated as data, and a rule-based engine that answers when no model is available.",
+      },
+    ],
+  },
+  {
+    slug: "meet-ai",
+    index: "02",
     title: "Meet.AI",
     tagline: "Video meetings where an AI agent joins the call, then writes the notes.",
     summary:
@@ -370,7 +499,7 @@ export const projects: Project[] = [
   },
   {
     slug: "book-review",
-    index: "02",
+    index: "03",
     title: "Book Review Platform",
     tagline: "A Spring Boot API with JWT auth, roles and a React client.",
     summary:
@@ -474,7 +603,7 @@ export const projects: Project[] = [
   },
   {
     slug: "vehicle-telemetry",
-    index: "03",
+    index: "04",
     title: "Vehicle Telemetry System",
     tagline: "10 Hz sensor streaming to an Android Automotive dashboard.",
     summary:
@@ -821,7 +950,8 @@ export const skillGroups: SkillGroup[] = [
       { name: "Node.js", refs: ["tomosia", "meet-ai", "devhelp", "clinic"] },
       { name: "Fastify", refs: ["tomosia", "blog-api"] },
       { name: "NestJS", refs: ["devhelp"] },
-      { name: "REST APIs", refs: ["book-review", "vehicle-telemetry", "tomosia", "clinic"] },
+      { name: "Python · FastAPI", refs: ["retailops"] },
+      { name: "REST APIs", refs: ["retailops", "book-review", "vehicle-telemetry", "tomosia", "clinic"] },
       { name: "tRPC", refs: ["meet-ai", "tomosia"] },
       { name: "WebSocket / STOMP", refs: ["vehicle-telemetry"] },
       { name: "JWT & RBAC", refs: ["book-review", "clinic", "blog-api"] },
@@ -831,11 +961,11 @@ export const skillGroups: SkillGroup[] = [
     key: "frontend",
     title: "Frontend",
     skills: [
-      { name: "TypeScript", refs: ["meet-ai", "tomosia", "devhelp", "book-review"] },
+      { name: "TypeScript", refs: ["retailops", "meet-ai", "tomosia", "devhelp", "book-review"] },
       { name: "JavaScript", refs: ["margick", "clinic"] },
       { name: "React", refs: ["book-review", "clinic", "meet-ai"] },
-      { name: "Next.js", refs: ["meet-ai", "tomosia"] },
-      { name: "TanStack Query", refs: ["meet-ai", "book-review"] },
+      { name: "Next.js", refs: ["retailops", "meet-ai", "tomosia"] },
+      { name: "TanStack Query", refs: ["retailops", "meet-ai", "book-review"] },
       { name: "Tailwind CSS", refs: ["meet-ai", "book-review"] },
       { name: "HTML & CSS", refs: ["margick", "meet-ai"] },
     ],
@@ -844,12 +974,14 @@ export const skillGroups: SkillGroup[] = [
     key: "data",
     title: "Data & infra",
     skills: [
-      { name: "PostgreSQL", refs: ["meet-ai", "book-review", "vehicle-telemetry", "clinic"] },
+      { name: "PostgreSQL", refs: ["retailops", "meet-ai", "book-review", "vehicle-telemetry", "clinic"] },
+      { name: "SQLAlchemy & Alembic", refs: ["retailops"] },
       { name: "SQL", refs: ["book-review", "vehicle-telemetry"] },
       { name: "Drizzle ORM", refs: ["meet-ai"] },
       { name: "Spring Data JPA", refs: ["book-review", "vehicle-telemetry"] },
       { name: "Redis", refs: ["blog-api"] },
-      { name: "Docker", refs: ["tomosia", "vehicle-telemetry", "book-review"] },
+      { name: "Docker", refs: ["retailops", "tomosia", "vehicle-telemetry", "book-review"] },
+      { name: "Playwright & pytest", refs: ["retailops"] },
       { name: "Git", refs: ["tomosia", "margick"] },
       { name: "Linux & Bash", refs: ["tomosia"] },
       { name: "Vercel", refs: ["meet-ai", "book-review"] },
@@ -859,7 +991,7 @@ export const skillGroups: SkillGroup[] = [
     key: "ai",
     title: "AI & product",
     skills: [
-      { name: "Gemini API", refs: ["meet-ai"] },
+      { name: "Gemini API", refs: ["meet-ai", "retailops"] },
       { name: "OpenAI API", refs: ["meet-ai"] },
       { name: "Inngest", refs: ["meet-ai"] },
       { name: "Claude Code", refs: ["margick"] },
